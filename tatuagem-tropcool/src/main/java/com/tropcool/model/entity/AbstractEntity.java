@@ -10,10 +10,14 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.validation.constraints.NotNull;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @MappedSuperclass
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class AbstractEntity {
 	
 	@Id
