@@ -27,9 +27,11 @@ import lombok.NoArgsConstructor;
 public class Cliente extends AbstractEntity implements Serializable{
     @NotNull
     private Usuario usuario;
+    @NotBlank
     @Column(unique = true, nullable = false, length = 11)
 	private String cpf;
     @Column(length = 11)
+    @NotBlank
 	private String telefone;
     @OneToMany(targetEntity = HorarioAgendado.class,cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},
 			fetch = FetchType.EAGER, mappedBy = "cliente", orphanRemoval = true)

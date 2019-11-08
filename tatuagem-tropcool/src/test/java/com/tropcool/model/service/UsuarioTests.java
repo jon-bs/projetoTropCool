@@ -49,16 +49,19 @@ public class UsuarioTests extends AbstractIntegrationTests
 	 *
 	 */
 	@Test
-	@WithUserDetails("marcieli.langer@mailinator.com")
+	@WithUserDetails("gabriel@mailinator.com")
 	@Sql( {		    
 	      "/dataset/truncate.sql",
 				"/dataset/usuarios.sql"
 		})
 	public void cadastrarUsuarioMustPass()
 	{
+		//created, nome, login, email, ativo,senha
 		Usuario usuario = new Usuario();
-		usuario.setNome("Marcieli");
-		usuario.setEmail( "marcieli@mailinator.com" );
+		usuario.setNome("Gabriel");
+		usuario.setLogin("gabriel");
+		usuario.setSenha("axvdasdwasd");
+		usuario.setEmail( "gabriel@mailinator.com" );
 		usuario.setPerfil( RoleEnum.ADMINISTRATOR );
 		this.usuarioService.cadastrarUsuario(usuario);
 		Assert.assertNotNull( usuario );
@@ -83,7 +86,7 @@ public class UsuarioTests extends AbstractIntegrationTests
 	public void ativarUsuarioMustPass(){
 		this.usuarioService.ativarUsuario("123456", "123456", "f786c907-032e-451b-ac93-8508dec75a3d");
 
-		Usuario usuarioAtivo = this.usuarioRepository.findByEmailIgnoreCase( "marcieli.langer@mailinator.com" );
+		Usuario usuarioAtivo = this.usuarioRepository.findByEmailIgnoreCase( "gabriel@mailinator.com" );
 		Assert.assertEquals( true, usuarioAtivo.getAtivo() );
 	}
 	
