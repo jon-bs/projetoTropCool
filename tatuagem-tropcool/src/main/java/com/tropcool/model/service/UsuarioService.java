@@ -3,12 +3,13 @@ package com.tropcool.model.service;
 import java.time.OffsetDateTime;
 import java.util.concurrent.ExecutionException;
 
-import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSendException;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import com.tropcool.configuration.settings.AppSettings;
@@ -78,7 +79,7 @@ public class UsuarioService {
 		
 		//gera senha aleatória
 		usuario.generatePassword();
-		usuario.setSenha( this.passwordEncoder.encode( usuario.getPassword() ) );
+		usuario.setSenha(PasswordEncoderFactories.createDelegatingPasswordEncoder().encode(usuario.getSenha()));
 		
 		//gera um token para ativação da conta
 		usuario.generateAccountActivateToken();

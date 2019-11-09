@@ -9,10 +9,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-
-import org.hibernate.validator.constraints.Length;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,11 +20,16 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@Table()
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
 public class Cliente extends AbstractEntity implements Serializable{
-    @NotNull
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 2458422755068421369L;
+	@NotNull
     private Usuario usuario;
     @NotBlank
     @Column(unique = true, nullable = false, length = 11)

@@ -15,6 +15,7 @@ import com.tropcool.model.repository.ClienteRepository;
 @Service // classe service
 @Transactional
 public class ClienteService {
+	
 	@Autowired
 	private ClienteRepository clienteRepository;
 	
@@ -22,7 +23,7 @@ public class ClienteService {
 		return this.clienteRepository.save(cliente);
 	}
 	
-	public Cliente detealharCliente(Long id) {
+	public Cliente detalharCliente(Long id) {
 		Cliente cliente = this.clienteRepository.findById(id).orElse(null);
 		Assert.notNull(cliente,"O cliente de id " + id + " não foi encontrado no sistema...");
 		return cliente;

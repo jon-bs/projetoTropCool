@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.jdbc.Sql;
 
+import com.tropcool.model.service.ClienteService;
 import com.tropcool.model.entity.Cliente;
 import com.tropcool.model.repository.ClienteRepository;
 

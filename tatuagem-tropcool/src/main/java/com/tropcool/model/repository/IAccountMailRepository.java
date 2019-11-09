@@ -2,11 +2,14 @@ package com.tropcool.model.repository;
 
 import java.util.concurrent.Future;
 
+import org.springframework.stereotype.Repository;
+
 import com.tropcool.model.entity.Usuario;
 
 /**
  *
  */
+@Repository
 public interface IAccountMailRepository
 {
 	/*-------------------------------------------------------------------
