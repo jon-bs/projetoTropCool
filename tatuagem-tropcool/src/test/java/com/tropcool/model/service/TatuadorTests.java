@@ -1,5 +1,9 @@
 package com.tropcool.model.service;
 
-public class TatuadorTests {
+import com.tropcool.model.service.AbstractIntegrationTests;
 
+public class TatuadorTests extends AbstractIntegrationTests {
+
+	
+	
 }

@@ -14,6 +14,7 @@ import com.tropcool.model.repository.EnderecoRepository;
 @Service
 @Transactional
 public class EnderecoService {
+	
 	@Autowired
 	private EnderecoRepository enderecoRepository;
 	

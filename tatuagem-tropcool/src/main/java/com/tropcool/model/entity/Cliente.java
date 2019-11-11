@@ -29,16 +29,26 @@ public class Cliente extends AbstractEntity implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 2458422755068421369L;
+	
 	@NotNull
-    private Usuario usuario;
+	private Usuario usuario;
+//	private Integer usuario_id;
+	
     @NotBlank
     @Column(unique = true, nullable = false, length = 11)
 	private String cpf;
+    
     @Column(length = 11)
     @NotBlank
 	private String telefone;
-    @OneToMany(targetEntity = HorarioAgendado.class,cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},
-			fetch = FetchType.EAGER, mappedBy = "cliente", orphanRemoval = true)
-    private List<HorarioAgendado> horariosAgendados = new ArrayList<HorarioAgendado>();
     
+    @OneToMany(
+	    		targetEntity = HorarioAgendado.class, 
+	    		cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},
+				fetch = FetchType.EAGER, 
+				mappedBy = "cliente", 
+				orphanRemoval = true
+			)
+    
+    private List<HorarioAgendado> horariosAgendados = new ArrayList<HorarioAgendado>();
 }

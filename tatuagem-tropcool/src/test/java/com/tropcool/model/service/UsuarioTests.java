@@ -1,13 +1,12 @@
 package com.tropcool.model.service;
 
-import java.time.OffsetDateTime;
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.context.jdbc.Sql;
 
+import com.tropcool.model.entity.Cliente;
 import com.tropcool.model.entity.RoleEnum;
 import com.tropcool.model.entity.Usuario;
 import com.tropcool.model.repository.UsuarioRepository;
@@ -48,7 +47,9 @@ public class UsuarioTests extends AbstractIntegrationTests {
 		usuario.setLogin("gabriel");
 		usuario.setEmail("gabriel@mailinator.com");
 		usuario.setPerfil(RoleEnum.ADMINISTRATOR);
+		
 		this.usuarioService.cadastrarUsuario(usuario);
+		
 		Assert.assertNotNull(usuario);
 		Assert.assertNotNull(usuario.getId());
 
@@ -62,12 +63,17 @@ public class UsuarioTests extends AbstractIntegrationTests {
 	 * Teste para ativar um usuário do sistema com sucesso
 	 */
 	@Test
-	@WithUserDetails("marcieli.langer@mailinator.com")
-	@Sql({ "/dataset/truncate.sql", "/dataset/usuarios.sql" })
+	@WithUserDetails("gabriel@mailinator.com")
+	@Sql({ 
+		"/dataset/truncate.sql", 
+			"/dataset/usuarios.sql" 
+		})
 	public void ativarUsuarioMustPass() {
+		
 		this.usuarioService.ativarUsuario("123456", "123456", "f786c907-032e-451b-ac93-8508dec75a3d");
 
 		Usuario usuarioAtivo = this.usuarioRepository.findByEmailIgnoreCase("gabriel@mailinator.com");
+		
 		Assert.assertEquals(true, usuarioAtivo.getAtivo());
 	}
 
@@ -77,10 +83,15 @@ public class UsuarioTests extends AbstractIntegrationTests {
 	// ======== ESQUECI MINHA SENHA =============
 
 	@Test
-	@Sql({ "/dataset/truncate.sql", "/dataset/usuarios.sql" })
+	@Sql({ 
+		"/dataset/truncate.sql", 
+			"/dataset/usuarios.sql" 
+		})
 	public void enviarEmailRecuperarSenhaUsuarioMustPass() {
-		this.usuarioService.enviarEmailRecuperarSenhaUsuario("marcieli.langer@mailinator.com");
-		Usuario usuario = this.usuarioRepository.findByEmailIgnoreCase("marcieli.langer@mailinator.com");
+		
+		this.usuarioService.enviarEmailRecuperarSenhaUsuario("gabriel@mailinator.com");
+		
+		Usuario usuario = this.usuarioRepository.findByEmailIgnoreCase("gabriel@mailinator.com");
 
 		Assert.assertNotNull(usuario);
 		Assert.assertNotNull(usuario.getPasswordResetToken());
@@ -96,8 +107,12 @@ public class UsuarioTests extends AbstractIntegrationTests {
 	 * 
 	 */
 	@Test()
-	@Sql({ "/dataset/truncate.sql", "/dataset/usuarios.sql" })
+	@Sql({ 
+		"/dataset/truncate.sql", 
+			"/dataset/usuarios.sql" 
+		})
 	public void redefinirSenhaMustPass() {
+		
 		this.usuarioService.redefinirSenha("123456", "123456", "f786c907-032e-451b-ac93-8508dec75a3d");
 	}
 
@@ -107,9 +122,13 @@ public class UsuarioTests extends AbstractIntegrationTests {
 	// ======== PEGAR USUÁRIO AUTENTICADO =============
 
 	@Test
-	@WithUserDetails("marcieli.langer@mailinator.com")
-	@Sql({ "/dataset/truncate.sql", "/dataset/usuarios.sql" })
+	@WithUserDetails("gabriel@mailinator.com")
+	@Sql({ 
+		"/dataset/truncate.sql", 
+			"/dataset/usuarios.sql" 
+		})
 	public void pegarUsuarioAutenticadoTestMustPass() {
+		
 		Usuario usuario = this.usuarioService.getAuthenticatedUser();
 		Assert.assertNotNull(usuario);
 		Assert.assertNotNull(usuario.getId());

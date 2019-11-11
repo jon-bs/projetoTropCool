@@ -85,14 +85,21 @@ public class UsuarioService {
 		usuario.generateAccountActivateToken();
 		
 		usuario = this.usuarioRepository.save( usuario );
-		try
-		{
-			this.accountMailRepository.sendNewUserAccount( usuario ).get();
-		}
-		catch ( MailSendException | InterruptedException | ExecutionException e )
-		{
-			e.printStackTrace();
-		}
+		
+		//erro de email por falta do endereço pelo visto 
+//		try
+//		{
+//			this.accountMailRepository.sendNewUserAccount( usuario ).get();
+//		}
+//		catch ( MailSendException | InterruptedException | ExecutionException e )
+//		{
+//			e.printStackTrace();
+//		}
+		return usuario;
+	}
+	
+	public Usuario cadastrarNewUser(Usuario usuario) 
+	{
 		return usuario;
 	}
 	

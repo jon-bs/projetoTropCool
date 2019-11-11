@@ -34,12 +34,15 @@ public class Usuario extends AbstractEntity implements UserDetails{
 	@NotBlank
 	@Column(unique = true, nullable = false, length = 20)
 	private String login;
+	
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	@NotBlank
-	@Column(unique = false, nullable = false, length = 16)
+	@Column(unique = false, nullable = false)
 	private String senha;
+	
 	@NotBlank // Não em branco
 	private String nome;
+	
 	@NotBlank
 	private String email;
 	private Boolean ativo;
