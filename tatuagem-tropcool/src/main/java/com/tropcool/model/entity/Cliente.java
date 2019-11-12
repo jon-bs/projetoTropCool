@@ -24,20 +24,14 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class Cliente extends AbstractEntity implements Serializable{
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 2458422755068421369L;
+public class Cliente extends Usuario{
+     
+	//private static final long serialVersionUID = 1L;
 	
-	@NotNull
-	private Usuario usuario;
-//	private Integer usuario_id;
+	public Cliente(Long id) {
+		super.setId(id);
+	}
 	
-    @NotBlank
-    @Column(unique = true, nullable = false, length = 11)
-	private String cpf;
-    
     @Column(length = 11)
     @NotBlank
 	private String telefone;
@@ -49,6 +43,5 @@ public class Cliente extends AbstractEntity implements Serializable{
 				mappedBy = "cliente", 
 				orphanRemoval = true
 			)
-    
     private List<HorarioAgendado> horariosAgendados = new ArrayList<HorarioAgendado>();
 }

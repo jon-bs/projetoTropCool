@@ -11,6 +11,8 @@ import javax.persistence.EnumType;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotBlank;
 import javax.persistence.Transient;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -27,9 +29,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode (callSuper = true)
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Usuario extends AbstractEntity implements UserDetails{
-	//private static final long serialVersionUID 1L;
-	private static final long serialVersionUID = -6624327477248695198L;
+	
+	public Usuario(Long id) {
+		super.setId(id);
+	}
+	
+	private static final long serialVersionUID = 1L;
 	
 	@NotBlank
 	@Column(unique = true, nullable = false, length = 20)
@@ -43,6 +50,10 @@ public class Usuario extends AbstractEntity implements UserDetails{
 	@NotBlank // Não em branco
 	private String nome;
 	
+	@NotBlank
+    @Column(unique = true, nullable = false, length = 11)
+	private String cpf;
+    
 	@NotBlank
 	private String email;
 	private Boolean ativo;

@@ -19,8 +19,13 @@ public class ClienteService {
 	@Autowired
 	private ClienteRepository clienteRepository;
 	
+	@Autowired
+	private UsuarioService usuarioService;
+	
+	
 	public Cliente cadastrarCliente(Cliente cliente) {
-		
+		this.usuarioService.cadastrarNewUser(cliente);
+		//this.usuarioService.cadastrarUsuario(cliente);
 		return this.clienteRepository.save(cliente);
 	
 	}

@@ -7,16 +7,19 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
 @Table
 @Entity
-public class Tatuador extends AbstractEntity{
-	@NotNull
-	private Usuario usuario;
+@EqualsAndHashCode(callSuper = true)
+public class Tatuador extends Usuario{
 	
-	@Column(unique = true, nullable = false, length = 11)
-	private String cpf;
+	//private static final long serialVersionUID = 1L;
+	
+	public Tatuador(Long id) {
+		super.setId(id);
+	}
 	
 	@NotBlank
 	@Column(unique = true, length = 11)

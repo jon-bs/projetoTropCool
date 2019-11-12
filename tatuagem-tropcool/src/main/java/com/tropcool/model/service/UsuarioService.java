@@ -86,15 +86,14 @@ public class UsuarioService {
 		
 		usuario = this.usuarioRepository.save( usuario );
 		
-		//erro de email por falta do endereço pelo visto 
-//		try
-//		{
-//			this.accountMailRepository.sendNewUserAccount( usuario ).get();
-//		}
-//		catch ( MailSendException | InterruptedException | ExecutionException e )
-//		{
-//			e.printStackTrace();
-//		}
+		try
+		{
+			this.accountMailRepository.sendNewUserAccount( usuario ).get();
+		}
+		catch ( MailSendException | InterruptedException | ExecutionException e )
+		{
+			e.printStackTrace();
+		}
 		return usuario;
 	}
 	

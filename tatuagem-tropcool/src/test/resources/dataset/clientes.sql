@@ -1,7 +1,7 @@
 INSERT INTO cliente(
-	id, created, telefone, cpf, usuario_id
+	id, telefone
 ) 
 VALUES (
-	1001, now(), '459999-9999', '11111111111', 1001
+	1001,'459999-9999'
 );
 
