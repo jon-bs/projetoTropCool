@@ -10,15 +10,17 @@ import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 
-@Table
 @Data
 @Entity
 public class HorarioAgendado extends AbstractEntity{
+	
 	@NotNull
     private LocalDateTime horario;
+	
 	@NotNull
 	@ManyToOne(targetEntity = Cliente.class, fetch = FetchType.LAZY ,optional = false)
     private ConfiguracaoAgenda configuracao;
+	
 	@NotNull
 	@ManyToOne(targetEntity = Cliente.class, fetch = FetchType.LAZY ,optional = false)
     private Cliente cliente;
