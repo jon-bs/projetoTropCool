@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.jdbc.Sql;
 
-import com.springwebiv.model.entity.Funcionario;
 import com.tropcool.model.entity.Cliente;
 import com.tropcool.model.entity.RoleEnum;
 import com.tropcool.model.repository.ClienteRepository;

@@ -2,7 +2,11 @@ package com.tropcool.model.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
@@ -23,6 +27,11 @@ public class Endereco extends AbstractEntity implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	@OneToOne(
+			targetEntity = Tatuador.class, fetch = FetchType.LAZY, optional = false
+		)
+	private Tatuador tatuador;
 	
 	@NotBlank
 	private String cidade;

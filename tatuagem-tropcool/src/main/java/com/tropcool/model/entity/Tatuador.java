@@ -1,18 +1,29 @@
 package com.tropcool.model.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 @Data
 @Table
 @Entity
 @EqualsAndHashCode(callSuper = true)
+@NoArgsConstructor
+@AllArgsConstructor
 public class Tatuador extends Usuario{
 	
 	/**
@@ -36,6 +47,21 @@ public class Tatuador extends Usuario{
 	@Column(unique = true,nullable = false, length = 10)
 	private String alvara;
 	
-	//private Endereco endereco;
-	//private ArrayList<ConfiguracaoAgenda> horarios;
+	@OneToOne(
+			targetEntity = Endereco.class, 
+    		cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},
+			fetch = FetchType.EAGER, 
+			mappedBy = "tatuador", 
+			orphanRemoval = true
+			)
+	private Endereco endereco;
+	
+	@OneToMany(
+    		targetEntity = ConfiguracaoAgenda.class, 
+    		cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},
+			fetch = FetchType.LAZY, 
+			mappedBy = "tatuador", 
+			orphanRemoval = true
+		)
+	private List<ConfiguracaoAgenda> configuracaoAgenda = new ArrayList<ConfiguracaoAgenda>();
 }

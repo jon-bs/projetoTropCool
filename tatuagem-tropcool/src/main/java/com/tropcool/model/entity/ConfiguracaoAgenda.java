@@ -14,11 +14,17 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table
 @Data
+@EqualsAndHashCode(callSuper = true)
+@NoArgsConstructor
+@AllArgsConstructor
 public class ConfiguracaoAgenda extends AbstractEntity{
 	
 	@NotNull
@@ -28,10 +34,20 @@ public class ConfiguracaoAgenda extends AbstractEntity{
 	@Enumerated( EnumType.ORDINAL )
 	private DiaSemanaEnum dia;
 	
-	@ManyToOne(targetEntity = Tatuador.class,fetch = FetchType.LAZY, optional = false)
+	@ManyToOne(
+			targetEntity = Tatuador.class,
+			fetch = FetchType.LAZY,
+			optional = false
+			)
 	private Tatuador tatuador;
 	
-	@OneToMany(targetEntity = HorarioAgendado.class,cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},fetch = FetchType.EAGER, mappedBy = "configuracao", orphanRemoval = true)
+	@OneToMany(
+			targetEntity = HorarioAgendado.class,
+			cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},
+			fetch = FetchType.EAGER, 
+			mappedBy = "configuracao", 
+			orphanRemoval = true
+			)
 	private List<HorarioAgendado> horarioAgendado = new ArrayList<HorarioAgendado>();
 	
 }

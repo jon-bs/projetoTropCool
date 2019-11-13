@@ -37,7 +37,7 @@ public class Cliente extends Usuario{
     @OneToMany(
 	    		targetEntity = HorarioAgendado.class, 
 	    		cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},
-				fetch = FetchType.EAGER, 
+				fetch = FetchType.LAZY, 
 				mappedBy = "cliente", 
 				orphanRemoval = true
 			)
