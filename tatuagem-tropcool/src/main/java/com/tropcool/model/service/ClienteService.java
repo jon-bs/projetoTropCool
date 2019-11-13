@@ -25,13 +25,10 @@ public class ClienteService {
 	
 	public Cliente cadastrarCliente(Cliente cliente) {
 		this.usuarioService.cadastrarNewUser(cliente);
-		//this.usuarioService.cadastrarUsuario(cliente);
 		return this.clienteRepository.save(cliente);
-	
 	}
 	
 	public Cliente detalharCliente(Long id) {
-		
 		Cliente cliente = this.clienteRepository.findById(id).orElse(null);
 		Assert.notNull(cliente,"O cliente de id " + id + " não foi encontrado no sistema...");
 		return cliente;
@@ -45,7 +42,7 @@ public class ClienteService {
 		return this.clienteRepository.findAll();
 	}
 	
-	public void removeCliente(Long id) {
+	public void removerCliente(Long id) {
 		this.clienteRepository.deleteById(id);
 	}
 }

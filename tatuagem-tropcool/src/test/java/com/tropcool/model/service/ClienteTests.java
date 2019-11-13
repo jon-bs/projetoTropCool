@@ -2,15 +2,17 @@ package com.tropcool.model.service;
 
 import java.util.List;
 
+import javax.validation.ValidationException;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.test.context.support.WithUserDetails;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.jdbc.Sql;
 
+import com.springwebiv.model.entity.Funcionario;
 import com.tropcool.model.entity.Cliente;
 import com.tropcool.model.entity.RoleEnum;
-import com.tropcool.model.entity.Usuario;
 import com.tropcool.model.repository.ClienteRepository;
 import com.tropcool.model.repository.UsuarioRepository;
 
@@ -28,27 +30,16 @@ public class ClienteTests extends AbstractIntegrationTests  {
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 	
-	/*
-	private String login;
-	private String senha;
-	private String nome;
-	private String cpf;
-	private String email;
-	//private Boolean ativo;
-	private RoleEnum perfil;
-	private String telefone;
-	*/
+	
 	/**
 	 * ====================================== CADASTRAR ===========================================
 	 */
 	
 	@Test
-	@WithUserDetails("gabriel@mailinator.com")
 	@Sql({ 
 		"/dataset/truncate.sql",
-		"/dataset/usuarios.sql"
-		})
-	
+			"/dataset/usuarios.sql"
+									})
 	public void cadastrarClienteMustPass() {
 		Cliente cliente = new Cliente();
 		cliente.setLogin("adm");
@@ -59,20 +50,70 @@ public class ClienteTests extends AbstractIntegrationTests  {
 		cliente.setAtivo(true);
 		cliente.setPerfil(RoleEnum.USER);
 		cliente.setTelefone("14523658745");
-		this.clienteService.cadastrarCliente(cliente);
-		Assert.assertNotNull(cliente.getId());
-		//Assert.assertNotNull(cliente);
 		
+		this.clienteService.cadastrarCliente(cliente);
+	}
+	
+	@Test(expected = ValidationException.class)
+	@Sql({ 
+		"/dataset/truncate.sql",
+								})
+	public void cadastrarClienteMustFailLoginEmBranco() {
+		Cliente cliente = new Cliente();
+		cliente.setLogin("");
+		cliente.setSenha("12345");
+		cliente.setNome("Gabriel Andrade");
+		cliente.setCpf("11111111112");
+		cliente.setEmail("gabrieladm@hotmail.com");
+		cliente.setAtivo(true);
+		cliente.setPerfil(RoleEnum.USER);
+		cliente.setTelefone("14523658745");
+		
+		this.clienteService.cadastrarCliente(cliente);
+	}
+	
+	@Test(expected = ValidationException.class)
+	@Sql({ 
+		"/dataset/truncate.sql",
+								})
+	public void cadastrarClienteMustFailSenhaEmBranco() {
+		Cliente cliente = new Cliente();
+		cliente.setLogin("adm");
+		cliente.setSenha("");
+		cliente.setNome("Gabriel Andrade");
+		cliente.setCpf("11111111112");
+		cliente.setEmail("gabrieladm@hotmail.com");
+		cliente.setAtivo(true);
+		cliente.setPerfil(RoleEnum.USER);
+		cliente.setTelefone("14523658745");
+		
+		this.clienteService.cadastrarCliente(cliente);
+	}
+	
+	@Test(expected = ValidationException.class)
+	@Sql({ 
+		"/dataset/truncate.sql",
+								})
+	public void cadastrarClienteMustFailNomeEmBranco() {
+		Cliente cliente = new Cliente();
+		cliente.setLogin("adm");
+		cliente.setSenha("12345");
+		cliente.setNome("");
+		cliente.setCpf("11111111112");
+		cliente.setEmail("gabrieladm@hotmail.com");
+		cliente.setAtivo(true);
+		cliente.setPerfil(RoleEnum.USER);
+		cliente.setTelefone("14523658745");
+		
+		this.clienteService.cadastrarCliente(cliente);
 	}
 	
 	/** CPF DUPLICADO **/
-	@Test
-	@WithUserDetails("gabriel@mailinator.com")
+	@Test(expected = DataIntegrityViolationException.class)
 	@Sql({ 
 		"/dataset/truncate.sql",
-		"/dataset/usuarios.sql"
-		})
-	
+			"/dataset/usuarios.sql"
+									})
 	public void cadastrarClienteCpfDuplicadoMustFail() {
 		Cliente cliente = new Cliente();
 		cliente.setLogin("adm");
@@ -83,10 +124,44 @@ public class ClienteTests extends AbstractIntegrationTests  {
 		cliente.setAtivo(true);
 		cliente.setPerfil(RoleEnum.USER);
 		cliente.setTelefone("14523658745");
+
 		this.clienteService.cadastrarCliente(cliente);
-		Assert.assertNotNull(cliente.getId());
-		//Assert.assertNotNull(cliente);
+	}
+	
+	@Test(expected = ValidationException.class)
+	@Sql({ 
+		"/dataset/truncate.sql",
+								})
+	public void cadastrarClienteMustFailEmailEmBranco() {
+		Cliente cliente = new Cliente();
+		cliente.setLogin("adm");
+		cliente.setSenha("12345");
+		cliente.setNome("Gabriel Andrade");
+		cliente.setCpf("11111111112");
+		cliente.setEmail("");
+		cliente.setAtivo(true);
+		cliente.setPerfil(RoleEnum.USER);
+		cliente.setTelefone("14523658745");
 		
+		this.clienteService.cadastrarCliente(cliente);
+	}
+	
+	@Test(expected = ValidationException.class)
+	@Sql({ 
+		"/dataset/truncate.sql",
+								})
+	public void cadastrarClienteMustFailTelefoneEmBranco() {
+		Cliente cliente = new Cliente();
+		cliente.setLogin("adm");
+		cliente.setSenha("12345");
+		cliente.setNome("Gabriel Andrade");
+		cliente.setCpf("11111111112");
+		cliente.setEmail("gabrieladm@hotmail.com");
+		cliente.setAtivo(true);
+		cliente.setPerfil(RoleEnum.USER);
+		cliente.setTelefone("");
+		
+		this.clienteService.cadastrarCliente(cliente);
 	}
 	
 	/**
@@ -96,14 +171,65 @@ public class ClienteTests extends AbstractIntegrationTests  {
 	@Sql({ 
 		"/dataset/truncate.sql",  
 			"/dataset/usuarios.sql", 
-			"/dataset/clientes.sql"
-		})
+				"/dataset/clientes.sql"
+										})
 	public void listarClientesMustPass() {
 		
 		List<Cliente> clientes = this.clienteService.listaCliente();
 		
-		Assert.assertEquals(clientes.size(),1);
+		Assert.assertEquals(clientes.size(), 4);
+	}
+
+	/**
+	 * ====================================== Atualizar ===========================================
+	 */
+	
+	@Test
+	@Sql({ 
+		"/dataset/truncate.sql",  
+			"/dataset/usuarios.sql",
+				"/dataset/clientes.sql", 
+										})
+	public void atualizarClienteMustPass() 
+	{
+		Cliente cliente = this.clienteRepository.findById(1001L).orElse(null);
+		cliente.setLogin("cliente0001");
+		
+		clienteService.atualizarCliente(cliente);
 	}
 	
+	
+	@Test(expected = DataIntegrityViolationException.class)
+	@Sql({ 
+		"/dataset/truncate.sql",  
+			"/dataset/usuarios.sql",
+				"/dataset/clientes.sql", 
+										})
+	public void atualizarClienteMustFailLoginEmUso() 
+	{
+		Cliente cliente = this.clienteRepository.findById(1001L).orElse(null);
+		cliente.setLogin("adm_gabriel");
+		
+		clienteService.atualizarCliente(cliente);
+	}
+	
+	/**
+	 * ====================================== REMOVER ===========================================
+	 */
+	
+	@Test
+	@Sql({
+		"/dataset/truncate.sql",
+			"/dataset/usuarios.sql",
+				"/dataset/clientes.sql"
+										})
+	public void removerClienteMustPass() {
+		
+		this.clienteService.removerCliente(1001L);
+		
+		Cliente cliente = this.clienteRepository.findById(1001L).orElse(null);
+		
+		Assert.assertNull(cliente);
+	}
 	
 }

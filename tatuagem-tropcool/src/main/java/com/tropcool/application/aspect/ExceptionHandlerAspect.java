@@ -1,6 +1,5 @@
 package com.tropcool.application.aspect;
 
-import java.beans.Introspector;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
@@ -10,25 +9,17 @@ import javax.validation.ValidationException;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
-import org.hibernate.Hibernate;
 import org.hibernate.exception.ConstraintViolationException;
 import org.postgresql.util.PSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Component;
 
-/**
-*
-* @author Rodrigo P. Fraga
-* @since 20/09/2013
-* @version 1.0
-* @category
-*/
+
 @Aspect
 @Component
 public class ExceptionHandlerAspect
@@ -61,7 +52,7 @@ public class ExceptionHandlerAspect
 	@AfterThrowing(pointcut = "within(@org.springframework.stereotype.Service *)", throwing = "exception")
 	public void handleException( JoinPoint joinPoint, org.springframework.dao.DuplicateKeyException exception )
 	{
-		throw new DuplicateKeyException( this.messageSource.getMessage( "repository.duplicatedKey", null, LocaleContextHolder.getLocale() ) );
+		throw new DuplicateKeyException( "Chave primário duplicada." );
 	}
 
 	/**
@@ -77,17 +68,20 @@ public class ExceptionHandlerAspect
 		for ( ConstraintViolation<?> constraint : exception.getConstraintViolations() )
 		{
 			String annotationType = constraint.getConstraintDescriptor().getAnnotation().annotationType().getName();
-			String messagePath = Introspector.decapitalize( Hibernate.getClass( constraint.getLeafBean() ).getSimpleName() ) + "." + constraint.getPropertyPath();
-			String attributeLabel = messageSource.getMessage( messagePath, null, constraint.getPropertyPath().toString(), LocaleContextHolder.getLocale() );
+			String attributeLabel = constraint.getPropertyPath().toString();
 			switch ( annotationType )
 			{
 				case "javax.validation.constraints.NotNull":
+					messages.add("O campo "+ attributeLabel +" não pode ser nullo.");
+					break;
 				case "org.hibernate.validator.constraints.NotEmpty":
-					messages.add( messageSource.getMessage( "validation.empty", new Object[]{attributeLabel}, LocaleContextHolder.getLocale() ) );
+					messages.add("O campo "+ attributeLabel +" não pode ser vazio.");
 					break;
 				case "org.hibernate.validator.constraints.Length":
+					messages.add("O campo "+ attributeLabel +" deve ter no máximo " + constraint.getConstraintDescriptor().getAttributes().get( "max" ) + " caracteres.");
+					break;
 				case "javax.validation.constraints.Size":
-					messages.add( messageSource.getMessage( "validation.length", new Object[]{attributeLabel, constraint.getConstraintDescriptor().getAttributes().get( "max" )}, LocaleContextHolder.getLocale() ) );
+					messages.add("O campo "+ attributeLabel +" deve ter no máximo " + constraint.getConstraintDescriptor().getAttributes().get( "max" ) + " dígitos.");
 					break;
 			}
 		}
@@ -103,7 +97,7 @@ public class ExceptionHandlerAspect
 	@AfterThrowing(pointcut = "within(@org.springframework.stereotype.Service *)", throwing = "exception")
 	public void handleException( JoinPoint joinPoint, org.springframework.dao.EmptyResultDataAccessException exception )
 	{
-		throw new EmptyResultDataAccessException( messageSource.getMessage( "repository.emptyResult", null, LocaleContextHolder.getLocale() ), 1 );
+		throw new EmptyResultDataAccessException( "Nenhum resultado encontrado", 1 );
 	}
 
 	/**
@@ -129,13 +123,14 @@ public class ExceptionHandlerAspect
 			final String message = sqlException.getServerErrorMessage().getDetail();
 
 			String key;
+			
 			//Verifica o código do erro gerado pelo PostgreSQL
 			switch ( cause.getSQLState() )
 			{
 				case "23503": // foreign_key_violation
 				{
 					key = message.substring( message.indexOf( '"' ) + 1, message.indexOf( '.' ) - 1 );
-					throw new DataIntegrityViolationException( this.messageSource.getMessage( "repository.foreignKeyViolation", new String[]{key}, LocaleContextHolder.getLocale() ) );
+					throw new DataIntegrityViolationException( "Não foi possível realizar a operação pois esse registro está referenciado em " + key );
 				}
 				case "23505": // unique_violation
 				{
@@ -145,23 +140,23 @@ public class ExceptionHandlerAspect
 						key = key.replace( "lower(", "" );
 						key = key.replace( "::text", "" );
 					}
-					throw new DataIntegrityViolationException( this.messageSource.getMessage( "repository.uniqueViolation", new String[]{key}, LocaleContextHolder.getLocale() ) );
+					throw new DataIntegrityViolationException( "O campo " + key + " informado já existe." );
 				}
 				case "23502": // not_null_violation
 				{
 					LOG.info( message );
 					LOG.info( "Not null violation." );
 					key = cause.getConstraintName();
-					throw new DataIntegrityViolationException( this.messageSource.getMessage( "repository.notNullViolation", new String[]{key}, LocaleContextHolder.getLocale() ) );
+					throw new DataIntegrityViolationException( "Por favor preencha o campo " + key );
 				}
 				default:
 				{
-					throw new DataIntegrityViolationException( this.messageSource.getMessage( "repository.uniqueViolation", new String[]{cause.getSQLState()}, LocaleContextHolder.getLocale() ) );
+					throw new DataIntegrityViolationException( "O campo " + cause.getSQLState() + " já existe." );
 				}
 			}
 		}
 
-		throw new DataIntegrityViolationException( this.messageSource.getMessage( "repository.dataIntegrityViolation", null, LocaleContextHolder.getLocale() ) );
+		throw new DataIntegrityViolationException( "Não foi possível realizar a operação pois ocorreu um problema de integridade nos dados." );
 	}
 
 	//---------
@@ -177,6 +172,6 @@ public class ExceptionHandlerAspect
 	@AfterThrowing(pointcut = "within(@org.springframework.stereotype.Service *)", throwing = "exception")
 	public void handleException( JoinPoint joinPoint, org.springframework.security.access.AccessDeniedException exception )
 	{
-		throw new AccessDeniedException( this.messageSource.getMessage( "security.accessDenied", null, LocaleContextHolder.getLocale() ) );
+		throw new AccessDeniedException( "Acesso negado." );
 	}
 }

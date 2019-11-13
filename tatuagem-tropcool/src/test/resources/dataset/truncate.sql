@@ -1,3 +1,3 @@
 
-TRUNCATE cliente CASCADE;
 TRUNCATE usuario CASCADE;
+TRUNCATE cliente CASCADE;

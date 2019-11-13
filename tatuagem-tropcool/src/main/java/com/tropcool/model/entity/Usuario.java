@@ -42,7 +42,7 @@ public class Usuario extends AbstractEntity implements UserDetails{
 	@Column(unique = true, nullable = false, length = 20)
 	private String login;
 	
-	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+	//@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	@NotBlank
 	@Column(unique = false, nullable = false)
 	private String senha;

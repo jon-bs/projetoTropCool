@@ -15,8 +15,11 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class Tatuador extends Usuario{
 	
-	//private static final long serialVersionUID = 1L;
-	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public Tatuador(Long id) {
 		super.setId(id);
 	}
