@@ -53,6 +53,15 @@ public class Tatuador extends Usuario{
 	private Endereco endereco;
 	
 	@OneToMany(
+    		targetEntity = Post.class, 
+    		cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},
+			fetch = FetchType.LAZY, 
+			mappedBy = "tatuador", 
+			orphanRemoval = true
+		)
+	private List<Post> posts = new ArrayList<Post>();
+	
+	@OneToMany(
     		targetEntity = ConfiguracaoAgenda.class, 
     		cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},
 			fetch = FetchType.LAZY, 

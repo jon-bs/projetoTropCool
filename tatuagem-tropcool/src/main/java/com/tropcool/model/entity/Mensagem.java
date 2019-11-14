@@ -19,12 +19,19 @@ import lombok.Data;
 @Entity
 @Data
 public class Mensagem extends AbstractEntity{
+	
 	@NotNull
-	@ManyToOne(targetEntity = Usuario.class, fetch = FetchType.LAZY, optional = false)
+	@ManyToOne(
+			targetEntity = Usuario.class,
+			fetch = FetchType.LAZY,
+			optional = true)
 	private Usuario remetente;
 	
 	@NotNull
-	@ManyToOne(targetEntity = Usuario.class, fetch = FetchType.LAZY, optional = false)
+	@ManyToOne(
+			targetEntity = Usuario.class, 
+			fetch = FetchType.LAZY, 
+			optional = true)
 	private Usuario destinatario;
 	
 	@NotNull
@@ -34,7 +41,13 @@ public class Mensagem extends AbstractEntity{
 	@NotBlank
 	private String conteudo;
 	
-	@OneToMany(targetEntity = Interacao.class,cascade= {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.EAGER, mappedBy = "mensagem",orphanRemoval = true)
+	@OneToMany(
+			targetEntity = Interacao.class,
+			cascade= {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, 
+			fetch = FetchType.EAGER, 
+			mappedBy = "mensagem",
+			orphanRemoval = true
+			)
 	private List<Interacao> interacao = new ArrayList<Interacao>();
 	
 	
