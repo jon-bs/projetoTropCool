@@ -1,3 +1,5 @@
 
 TRUNCATE usuario CASCADE;
 TRUNCATE cliente CASCADE;
+TRUNCATE tatuador CASCADE;
+TRUNCATE endereco CASCADE;

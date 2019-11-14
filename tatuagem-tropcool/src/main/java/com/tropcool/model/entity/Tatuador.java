@@ -48,12 +48,8 @@ public class Tatuador extends Usuario{
 	private String alvara;
 	
 	@OneToOne(
-			targetEntity = Endereco.class, 
-    		cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},
-			fetch = FetchType.EAGER, 
-			mappedBy = "tatuador", 
-			orphanRemoval = true
-			)
+			targetEntity = Endereco.class, fetch = FetchType.LAZY, optional = true
+		)
 	private Endereco endereco;
 	
 	@OneToMany(

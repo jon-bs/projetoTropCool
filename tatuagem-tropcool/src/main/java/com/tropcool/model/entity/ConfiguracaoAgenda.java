@@ -29,8 +29,10 @@ public class ConfiguracaoAgenda extends AbstractEntity{
 	
 	@NotNull
 	private LocalTime horaInicio;
+	
 	@NotNull
 	private LocalTime horaTermino;
+	
 	@Enumerated( EnumType.ORDINAL )
 	private DiaSemanaEnum dia;
 	

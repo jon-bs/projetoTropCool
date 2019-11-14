@@ -53,6 +53,8 @@ public class ClienteTests extends AbstractIntegrationTests  {
 		this.clienteService.cadastrarCliente(cliente);
 	}
 	
+	/** LOGIN EM BRANCO **/
+	
 	@Test(expected = ValidationException.class)
 	@Sql({ 
 		"/dataset/truncate.sql",
@@ -70,6 +72,8 @@ public class ClienteTests extends AbstractIntegrationTests  {
 		
 		this.clienteService.cadastrarCliente(cliente);
 	}
+	
+	/** SENHA EM BRANCO **/
 	
 	@Test(expected = ValidationException.class)
 	@Sql({ 
@@ -89,6 +93,8 @@ public class ClienteTests extends AbstractIntegrationTests  {
 		this.clienteService.cadastrarCliente(cliente);
 	}
 	
+	/** NOME EM BRANCO **/
+	
 	@Test(expected = ValidationException.class)
 	@Sql({ 
 		"/dataset/truncate.sql",
@@ -107,7 +113,11 @@ public class ClienteTests extends AbstractIntegrationTests  {
 		this.clienteService.cadastrarCliente(cliente);
 	}
 	
+	
+	
 	/** CPF DUPLICADO **/
+	
+	
 	@Test(expected = DataIntegrityViolationException.class)
 	@Sql({ 
 		"/dataset/truncate.sql",
@@ -127,6 +137,8 @@ public class ClienteTests extends AbstractIntegrationTests  {
 		this.clienteService.cadastrarCliente(cliente);
 	}
 	
+	/** EMAIL EM BRANCO **/
+	
 	@Test(expected = ValidationException.class)
 	@Sql({ 
 		"/dataset/truncate.sql",
@@ -144,6 +156,8 @@ public class ClienteTests extends AbstractIntegrationTests  {
 		
 		this.clienteService.cadastrarCliente(cliente);
 	}
+	
+	/** TELEFONE EM BRANCO **/
 	
 	@Test(expected = ValidationException.class)
 	@Sql({ 

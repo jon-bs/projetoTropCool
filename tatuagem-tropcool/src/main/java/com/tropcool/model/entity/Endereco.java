@@ -27,10 +27,13 @@ public class Endereco extends AbstractEntity implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
 	@OneToOne(
-			targetEntity = Tatuador.class, fetch = FetchType.LAZY, optional = false
-		)
+			targetEntity = Tatuador.class, 
+    		cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},
+			fetch = FetchType.EAGER, 
+			mappedBy = "endereco", 
+			orphanRemoval = true
+			)
 	private Tatuador tatuador;
 	
 	@NotBlank

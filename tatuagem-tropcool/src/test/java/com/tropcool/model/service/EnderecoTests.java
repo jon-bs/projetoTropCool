@@ -32,6 +32,7 @@ public class EnderecoTests extends AbstractIntegrationTests {
 		this.enderecoService.cadastrarEndereco(endereco);
 		
 		Assert.assertNotNull(endereco.getId());
+		System.out.println(endereco.getId());
 	}
 	
 	@Test(expected = ValidationException.class)
