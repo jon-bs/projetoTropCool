@@ -65,7 +65,6 @@ public class TatuadorTests extends AbstractIntegrationTests {
 		
 		Endereco endereco = enderecoRepository.findById(1001L).orElse(null);
 		Assert.assertNotNull(endereco);
-		System.out.println(endereco.getId());
 		tatuador.setEndereco(endereco);
 		
 		this.tatuadorService.cadastrarTatuador(tatuador);
@@ -164,7 +163,7 @@ public class TatuadorTests extends AbstractIntegrationTests {
 
 		Assert.assertNotNull(tatuador);
 		Assert.assertNotNull(tatuador.getId());
-		//Assert.assertEquals(tatuador.getCpf(), "1111111111");
+	
 	}
 	
 	/**

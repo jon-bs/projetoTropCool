@@ -12,6 +12,7 @@ import org.springframework.test.context.jdbc.Sql;
 
 import com.tropcool.model.entity.Cliente;
 import com.tropcool.model.entity.RoleEnum;
+import com.tropcool.model.entity.Tatuador;
 import com.tropcool.model.repository.ClienteRepository;
 import com.tropcool.model.repository.UsuarioRepository;
 
@@ -51,6 +52,7 @@ public class ClienteTests extends AbstractIntegrationTests  {
 		cliente.setTelefone("14523658745");
 		
 		this.clienteService.cadastrarCliente(cliente);
+		Assert.assertNotNull( cliente.getId() );
 	}
 	
 	/** LOGIN EM BRANCO **/
@@ -192,7 +194,22 @@ public class ClienteTests extends AbstractIntegrationTests  {
 		
 		Assert.assertEquals(clientes.size(), 4);
 	}
+	
+	/**
+	 * ====================================== DETALHAR ===========================================
+	 */
+	
+	@Test
+	@Sql({ 
+		"/dataset/truncate.sql",  
+			"/dataset/usuarios.sql", 
+				"/dataset/clientes.sql"
+										})
+	public void detalharClienteMustPass() {
+		Cliente cliente = this.clienteRepository.findById(1002L).orElse(null);
 
+		Assert.assertNotNull(cliente);
+	}
 	/**
 	 * ====================================== Atualizar ===========================================
 	 */
