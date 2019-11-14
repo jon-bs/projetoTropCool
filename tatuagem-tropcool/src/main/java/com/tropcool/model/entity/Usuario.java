@@ -1,18 +1,23 @@
 package com.tropcool.model.entity;
 
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.EnumType;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotBlank;
 import javax.persistence.Transient;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -57,6 +62,24 @@ public class Usuario extends AbstractEntity implements UserDetails{
 	@NotBlank
 	private String email;
 	private Boolean ativo;
+	
+	@OneToMany(
+			targetEntity = Mensagem.class,
+			cascade= {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, 
+			fetch = FetchType.LAZY, 
+			mappedBy = "remetente",
+			orphanRemoval = true
+			)
+	private List<Mensagem> mensagemEnviada = new ArrayList<Mensagem>();
+	
+	@OneToMany(
+			targetEntity = Mensagem.class,
+			cascade= {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, 
+			fetch = FetchType.LAZY, 
+			mappedBy = "destinatario",
+			orphanRemoval = true
+			)
+	private List<Mensagem> mensagemRecebida = new ArrayList<Mensagem>();
 	
 	@Enumerated( EnumType.ORDINAL )
 	private RoleEnum perfil;

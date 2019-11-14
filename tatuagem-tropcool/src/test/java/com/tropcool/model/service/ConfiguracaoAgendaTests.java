@@ -10,6 +10,7 @@ import org.springframework.test.context.jdbc.Sql;
 
 import com.tropcool.model.entity.ConfiguracaoAgenda;
 import com.tropcool.model.entity.DiaSemanaEnum;
+import com.tropcool.model.entity.Tatuador;
 import com.tropcool.model.repository.ConfiguracaoAgendaRepository;
 import com.tropcool.model.repository.HorarioAgendadoRepository;
 import com.tropcool.model.repository.TatuadorRepository;
@@ -38,6 +39,8 @@ public class ConfiguracaoAgendaTests extends AbstractIntegrationTests {
 	 * ====================================== CADASTRAR ===========================================
 	 */
 	
+	/* CADASTRAR CONFIGURAÇÂO_AGENDA - MUSTPASS*/
+	
 	@Test
 	@Sql({ 
 		"/dataset/truncate.sql",
@@ -45,12 +48,15 @@ public class ConfiguracaoAgendaTests extends AbstractIntegrationTests {
 		"/dataset/clientes.sql",
 		"/dataset/tatuadores.sql"
 									})
-	public void cadastrarConfiguracaoAgendaMustPass() {		
+	public void cadastrarConfiguracaoAgendaMustPass() {	
+		Tatuador tatuador = tatuadorRepository.findById(1001L).orElse(null);
 		ConfiguracaoAgenda conf = new ConfiguracaoAgenda();
 		conf.setDia(DiaSemanaEnum.SEGUNDA);
 		conf.setHoraInicio(LocalTime.of(8, 0));
 		conf.setHorarioAgendado(null);
 		conf.setHoraTermino(LocalTime.of(18, 0));
-		conf.setTatuador(null);
+		conf.setTatuador(tatuador);
+		
+		configuracaoService.cadastrarConfiguracaoAgenda(conf);
 	}
 }

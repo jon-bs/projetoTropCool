@@ -1,5 +1,9 @@
 package com.tropcool.model.service;
 
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +47,7 @@ public class HorarioAgendadoTests extends AbstractIntegrationTests{
 		"/dataset/truncate.sql",
 		"/dataset/usuarios.sql",
 		"/dataset/clientes.sql",
+		"/dataset/tatuadores.sql",
 		"/dataset/configuracaoAgendas.sql"
 		
 	})
@@ -52,7 +57,8 @@ public class HorarioAgendadoTests extends AbstractIntegrationTests{
 		
 		HorarioAgendado horario = new HorarioAgendado();
 		horario.setCliente(cliente);
-		horario.setConfiguracao(conf);
+		horario.setConfiguracao(conf);  
+		horario.setHorario(LocalDateTime.of(2019, 11, 22, 8, 0));
 		
 		horarioService.agendarHorario(horario);
 		Assert.assertNotNull(horario.getId());

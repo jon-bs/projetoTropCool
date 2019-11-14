@@ -1,5 +1,5 @@
 package com.tropcool.model.service;
 
-public class InteracaoTests {
+public class InteracaoTests extends AbstractIntegrationTests {
 
 }
