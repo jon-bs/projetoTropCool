@@ -21,7 +21,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-@Table
 @Entity
 @Data
 @NoArgsConstructor
@@ -29,6 +28,12 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode (callSuper = true)
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Mensagem extends AbstractEntity{
+	
+	private static final long serialVersionUID = 1L;
+	
+	public Mensagem(Long id) {
+		super.setId(id);
+	}
 	
 	@NotNull
 	@ManyToOne(
@@ -54,7 +59,7 @@ public class Mensagem extends AbstractEntity{
 	@OneToMany(
 			targetEntity = Interacao.class,
 			cascade= {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, 
-			fetch = FetchType.EAGER, 
+			fetch = FetchType.LAZY, 
 			mappedBy = "mensagem",
 			orphanRemoval = true
 			)
