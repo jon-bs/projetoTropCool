@@ -61,7 +61,7 @@ public class Mensagem extends AbstractEntity{
 			cascade= {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, 
 			fetch = FetchType.LAZY, 
 			mappedBy = "mensagem",
-			orphanRemoval = true
+			orphanRemoval = false
 			)
 	private List<Interacao> interacao = new ArrayList<Interacao>();
 	

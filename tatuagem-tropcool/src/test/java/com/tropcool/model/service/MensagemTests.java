@@ -97,7 +97,7 @@ public class MensagemTests extends AbstractIntegrationTests {
 		mensagem.setInteracao(null);
 		mensagem.setLido(false);
 		mensagem.setRemetente(cliente);
-		mensagem.setId(1001L);
+		mensagem.setId(1L);
 		
 		mensagemService.escreverMensagem(mensagem);
 		Assert.assertNotNull(mensagem.getId());
