@@ -2,9 +2,12 @@ package com.tropcool.model.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -19,7 +22,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class Interacao extends Mensagem{
+public class Interacao extends Mensagem {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -27,8 +30,11 @@ public class Interacao extends Mensagem{
 		super.setId(id);
 	}
 	
-	@NotNull
-	@ManyToOne(targetEntity = Mensagem.class, fetch = FetchType.LAZY, optional = false)
+	@OneToOne(
+			targetEntity = Mensagem.class,
+			fetch = FetchType.LAZY, 
+			optional = true
+			)
 	private Mensagem mensagem;
 	
 }

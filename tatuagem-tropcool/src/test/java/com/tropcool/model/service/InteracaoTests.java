@@ -67,7 +67,6 @@ public class InteracaoTests extends AbstractIntegrationTests {
 		  interacao.setRemetente(tatuador);
 		  
 		  interacaoService.escreverInteracao(interacao);
-		  Assert.assertNotNull(interacao.getId());
 		  
 	  
 	  }

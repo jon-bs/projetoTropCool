@@ -12,6 +12,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -56,14 +57,14 @@ public class Mensagem extends AbstractEntity{
 	@NotBlank
 	private String conteudo;
 	
-	@OneToMany(
+	@OneToOne(
 			targetEntity = Interacao.class,
 			cascade= {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, 
 			fetch = FetchType.LAZY, 
 			mappedBy = "mensagem",
 			orphanRemoval = false
 			)
-	private List<Interacao> interacao = new ArrayList<Interacao>();
+	private Interacao interacao;
 	
 	
 }
