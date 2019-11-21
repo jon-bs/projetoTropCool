@@ -25,6 +25,7 @@ public class HorarioAgendado extends AbstractEntity{
 	@NotNull
     private LocalDateTime horario;
 	
+	@NotNull
 	@ManyToOne(
 			targetEntity = ConfiguracaoAgenda.class, 
 			fetch = FetchType.LAZY ,

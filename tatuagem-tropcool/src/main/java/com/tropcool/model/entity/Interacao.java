@@ -36,7 +36,8 @@ public class Interacao extends Mensagem {
 		super.setId(id);
 	}
 	*/
-
+	
+	@NotNull
 	@OneToOne(
 			targetEntity = Mensagem.class,
 			fetch = FetchType.LAZY, 

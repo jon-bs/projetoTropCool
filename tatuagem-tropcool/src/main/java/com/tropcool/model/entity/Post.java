@@ -40,6 +40,8 @@ public class Post extends AbstractEntity{
 			    optional = false
 			)
     private Tatuador tatuador;
+	
+	@NotNull
     private Boolean bloqueado;
 	
 	@Column(name = "image", nullable = true)
@@ -52,10 +54,7 @@ public class Post extends AbstractEntity{
 	
 	public Image writeImg(byte[] imagem) {
 		Image img = new ImageIcon(imagem).getImage();
-		
-		/*
-		 * ByteImg byteI = new ByteImg(); byteI.byteImg(byte[])
-		 */
+		//ByteImg byteI = new ByteImg(); byteI.byteImg(byte[])
 		return img;
 	}
     

@@ -73,4 +73,100 @@ public class PostTests extends AbstractIntegrationTests{
 		post.writeImg(post.getImage());
 		Assert.assertNotNull(post);
 	}
+	
+	/**
+	 * ====================================== LISTAR ===========================================
+	 * @throws IOException 
+	 */
+	
+	/* LISTAR POST - MUSTPASS*/
+	
+	@Test
+	@Sql({ 
+		"/dataset/truncate.sql",
+		"/dataset/usuarios.sql",
+		"/dataset/tatuadores.sql",
+		"/dataset/posts.sql"
+	})
+	public void listarPostMustPass(){
+		List<Post> posts = postRepository.findAll();
+		Assert.assertEquals(3, posts.size());
+	}
+	
+	/**
+	 * ====================================== ATUALIZAR ===========================================
+	 * @throws IOException 
+	 */
+	
+	/* BLOQUEAR POST - MUSTPASS*/
+	
+	@Test
+	@Sql({ 
+		"/dataset/truncate.sql",
+		"/dataset/usuarios.sql",
+		"/dataset/tatuadores.sql",
+		"/dataset/posts.sql"
+	})
+	public void bloquearPostMustPass(){
+		Post post = postRepository.findById(1001L).orElse(null);
+		Assert.assertNotNull(post);
+		Assert.assertTrue(post.getBloqueado() == false);
+		
+		post.setBloqueado(true);
+		postRepository.save(post);
+	}
+	
+	/* DESBLOQUEAR POST - MUSTPASS*/
+	
+	@Test
+	@Sql({ 
+		"/dataset/truncate.sql",
+		"/dataset/usuarios.sql",
+		"/dataset/tatuadores.sql",
+		"/dataset/posts.sql"
+	})
+	public void desbloquearPostMustPass(){
+		Post post = postRepository.findById(1002L).orElse(null);
+		Assert.assertNotNull(post);
+		Assert.assertTrue(post.getBloqueado() == true);
+		
+		post.setBloqueado(false);
+		postRepository.save(post);
+	}
+	
+	/* ATUALIZAR POST - REMOVER TATUADOR - MUSTFAIL*/
+	
+	@Test
+	@Sql({ 
+		"/dataset/truncate.sql",
+		"/dataset/usuarios.sql",
+		"/dataset/tatuadores.sql",
+		"/dataset/posts.sql"
+	})
+	public void removerTatuadorPostMustFail(){
+		Post post = postRepository.findById(1001L).orElse(null);
+		Assert.assertNotNull(post);
+		Assert.assertNotNull(post.getTatuador());
+		post.setTatuador(null);
+		postRepository.save(post);
+	}
+	/**
+	 * ====================================== REMOVER ===========================================
+	 * @throws IOException 
+	 */
+	
+	/* REMOVER POST - MUSTPASS*/
+	
+	@Test
+	@Sql({ 
+		"/dataset/truncate.sql",
+		"/dataset/usuarios.sql",
+		"/dataset/tatuadores.sql",
+		"/dataset/posts.sql"
+	})
+	public void removerPostMustPass(){
+		postRepository.deleteById(1001L);
+		Post post = postRepository.findById(1001L).orElse(null);
+		Assert.assertNull(post);
+	}
 }

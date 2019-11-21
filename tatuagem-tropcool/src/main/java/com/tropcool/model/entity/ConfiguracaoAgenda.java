@@ -36,6 +36,7 @@ public class ConfiguracaoAgenda extends AbstractEntity{
 	@Enumerated( EnumType.ORDINAL )
 	private DiaSemanaEnum dia;
 	
+	@NotNull
 	@ManyToOne(
 			targetEntity = Tatuador.class,
 			fetch = FetchType.LAZY,
