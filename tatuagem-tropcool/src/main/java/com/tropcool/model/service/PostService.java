@@ -1,7 +1,11 @@
 package com.tropcool.model.service;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,4 +43,6 @@ public class PostService {
 	public void removerPost(Long id) {
 		this.PostRepository.deleteById(id);
 	}
+	
+	
 }
