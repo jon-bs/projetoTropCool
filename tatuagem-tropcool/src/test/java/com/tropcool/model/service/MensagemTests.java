@@ -63,7 +63,7 @@ public class MensagemTests extends AbstractIntegrationTests {
 		mensagem.setConteudo("Bom dia, esta mensagem contém conteúdo irrelevante para sua leitura já que essa não passa de um mísero teste.");
 		mensagem.setData(LocalDateTime.now());
 		mensagem.setDestinatario(tatuador);
-		mensagem.setInteracao(null);
+		//mensagem.setInteracao(null);
 		mensagem.setLido(false);
 		mensagem.setRemetente(cliente);
 		mensagem.setId(1001L);
@@ -112,7 +112,6 @@ public class MensagemTests extends AbstractIntegrationTests {
 		interacao.setConteudo("Bom dia, tudo dentro das circunstâncias previstas..."); 
 		interacao.setData(LocalDateTime.now());
 		interacao.setDestinatario(cliente); 
-		interacao.setInteracao(null);
 		interacao.setMensagem(mensagem); 
 		interacao.setLido(false);
 		interacao.setRemetente(tatuador);

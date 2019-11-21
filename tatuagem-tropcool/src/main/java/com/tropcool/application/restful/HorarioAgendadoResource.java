@@ -16,7 +16,7 @@ import com.tropcool.model.service.HorarioAgendadoService;
 
 @Component
 @RestController
-@RequestMapping("/api/departamento")
+@RequestMapping("/api/horario_agendado")
 public class HorarioAgendadoResource {
 
 	@Autowired

@@ -16,7 +16,7 @@ import com.tropcool.model.service.ClienteService;
 
 @Component
 @RestController
-@RequestMapping("/api/departamento")
+@RequestMapping("/api/cliente")
 public class ClienteResource {
 
 	@Autowired

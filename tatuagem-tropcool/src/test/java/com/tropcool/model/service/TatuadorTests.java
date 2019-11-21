@@ -179,7 +179,7 @@ public class TatuadorTests extends AbstractIntegrationTests {
 			"/dataset/tatuadores.sql" 
 		})
 	public void listarTatuadorMustPass() {
-		List<Tatuador> tatuadores = tatuadores = tatuadorService.listarTatuadors();
+		List<Tatuador> tatuadores = tatuadorService.listarTatuadors();
 		Assert.assertTrue(tatuadores.size() == 4);
 	}
 	

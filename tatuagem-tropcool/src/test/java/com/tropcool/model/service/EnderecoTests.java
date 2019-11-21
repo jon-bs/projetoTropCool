@@ -143,15 +143,15 @@ public class EnderecoTests extends AbstractIntegrationTests {
 		
 	}
 	
-//	@Test(expected = ValidationException.class)
-//	@Sql({
-//		"/dataset/truncate.sql",
-//		"/dataset/enderecos.sql",
-//	})
-//	public void atualizarEnederecoMustFail()
-//	{
-//		Endereco endereco = this.enderecoRepository.findById(1002L).orElse(null);
-//		endereco.setRua("");
-//	}
+	@Test(expected = ValidationException.class)
+	@Sql({
+		"/dataset/truncate.sql",
+		"/dataset/enderecos.sql",
+	})
+	public void atualizarEnederecoMustFail()
+	{
+		Endereco endereco = this.enderecoRepository.findById(1002L).orElse(null);
+		endereco.setRua("");
+	}
 	
 }

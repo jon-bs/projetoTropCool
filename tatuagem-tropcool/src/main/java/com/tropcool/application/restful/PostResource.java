@@ -16,7 +16,7 @@ import com.tropcool.model.service.PostService;
 
 @Component
 @RestController
-@RequestMapping("/api/departamento")
+@RequestMapping("/api/post")
 public class PostResource {
 
 	@Autowired

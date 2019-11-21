@@ -16,7 +16,7 @@ import com.tropcool.model.service.InteracaoService;
 
 @Component
 @RestController
-@RequestMapping("/api/departamento")
+@RequestMapping("/api/interacao")
 public class InteracaoResource {
 
 	@Autowired
@@ -37,7 +37,7 @@ public class InteracaoResource {
 		return this.interacaoService.atualizarInteracao(interacao);
 	}
 	
-	@GetMapping("/find")
+	@GetMapping("/write")
 	public Interacao detalhar(@RequestParam("id") Long id) {
 		return this.interacaoService.detalharInteracao(id);
 	}

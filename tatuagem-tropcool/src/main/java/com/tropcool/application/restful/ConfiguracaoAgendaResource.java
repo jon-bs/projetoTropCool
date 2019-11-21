@@ -16,7 +16,7 @@ import com.tropcool.model.service.ConfiguracaoAgendaService;
 
 @Component
 @RestController
-@RequestMapping("/api/departamento")
+@RequestMapping("/api/configuracao_agenda")
 public class ConfiguracaoAgendaResource {
 
 	@Autowired

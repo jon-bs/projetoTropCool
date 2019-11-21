@@ -8,6 +8,9 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
@@ -22,19 +25,18 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-@Entity
 @Data
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode (callSuper = true)
-@Inheritance(strategy = InheritanceType.JOINED)
-public class Mensagem extends AbstractEntity{
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public class Mensagem{
 	
 	private static final long serialVersionUID = 1L;
 	
-	public Mensagem(Long id) {
-		super.setId(id);
-	}
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Long id;
 	
 	@NotNull
 	@ManyToOne(
@@ -52,6 +54,7 @@ public class Mensagem extends AbstractEntity{
 	
 	@NotNull
 	private LocalDateTime data;
+	
 	private Boolean lido;
 	
 	@NotBlank
@@ -65,6 +68,5 @@ public class Mensagem extends AbstractEntity{
 			orphanRemoval = false
 			)
 	private Interacao interacao;
-	
 	
 }

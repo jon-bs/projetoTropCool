@@ -16,7 +16,7 @@ import com.tropcool.model.service.UsuarioService;
 
 @Component
 @RestController
-@RequestMapping("/api/departamento")
+@RequestMapping("/api/usuario")
 public class UsuarioResource {
 
 	@Autowired

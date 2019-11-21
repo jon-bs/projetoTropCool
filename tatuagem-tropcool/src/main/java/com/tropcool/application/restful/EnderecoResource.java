@@ -16,7 +16,7 @@ import com.tropcool.model.service.EnderecoService;
 
 @Component
 @RestController
-@RequestMapping("/api/departamento")
+@RequestMapping("/api/endereco")
 public class EnderecoResource {
 
 	@Autowired

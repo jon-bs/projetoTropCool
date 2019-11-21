@@ -107,15 +107,15 @@ public class UsuarioTests extends AbstractIntegrationTests {
 	 * Serviço que redefinir senha de um usuário com sucesso
 	 * 
 	 */
-//	@Test()
-//	@Sql({ 
-//		"/dataset/truncate.sql", 
-//			"/dataset/usuarios.sql" 
-//		})
-//	public void redefinirSenhaMustPass() {
-//		
-//		this.usuarioService.redefinirSenha("123456", "123456", "f786c907-032e-451b-ac93-8508dec75a3d");
-//	}
+	@Test()
+	@Sql({ 
+		"/dataset/truncate.sql", 
+			"/dataset/usuarios.sql" 
+		})
+	public void redefinirSenhaMustPass() {
+		
+		this.usuarioService.redefinirSenha("123456", "123456", "f786c907-032e-451b-ac93-8508dec75a3d");
+	}
 
 	// Falta testes sem passar token, com token inválido, com token vencido, com
 	// senhas que não conferem, com senha null

@@ -181,9 +181,12 @@ public class UsuarioService {
 		OffsetDateTime dateTime = OffsetDateTime.now();
 		Assert.notNull( passwordResetToken, "Token inválido." );
 		Assert.isTrue( senha.equals( confirmacaoSenha ), "Senhas não conferem." );
+		
 		Usuario usuario = this.usuarioRepository.findByPasswordResetToken( passwordResetToken ).orElse( null );
 		Assert.notNull(usuario, "Token inválido");
+		
 		Assert.isTrue( usuario.getPasswordResetTokenExpiration().isAfter( dateTime ), "Token venceu." );
+		
 		usuario.setSenha( this.passwordEncoder.encode( senha ) );
 		return this.usuarioRepository.save( usuario );
 	}

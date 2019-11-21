@@ -16,7 +16,7 @@ import com.tropcool.model.service.MensagemService;
 
 @Component
 @RestController
-@RequestMapping("/api/departamento")
+@RequestMapping("/api/mensagem")
 public class MensagemResource {
 
 	@Autowired
@@ -27,7 +27,7 @@ public class MensagemResource {
 		return this.mensagemService.listarMensagens();
 	}
 	
-	@PostMapping("/insert")
+	@PostMapping("/write")
 	public Mensagem cadastrar(@RequestBody Mensagem mensagem) {
 		return this.mensagemService.escreverMensagem(mensagem);
 	}

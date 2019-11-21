@@ -59,16 +59,15 @@ public class InteracaoTests extends AbstractIntegrationTests {
 		  Assert.assertNotNull(mensagem);
 		  
 		  Interacao interacao = new Interacao();
+		  interacao.setId(2L);
 		  interacao.setConteudo("Boa tarde, o que deseja?");
 		  interacao.setData(LocalDateTime.now());
 		  interacao.setDestinatario(cliente);
-		  interacao.setLido(false);
+		  interacao.setLido(false);		  
 		  interacao.setMensagem(mensagem);
 		  interacao.setRemetente(tatuador);
 		  
 		  interacaoService.escreverInteracao(interacao);
 		  
-	  
-	  }
-	 
+	  } 
 }

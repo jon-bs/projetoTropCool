@@ -16,7 +16,7 @@ import com.tropcool.model.service.TatuadorService;
 
 @Component
 @RestController
-@RequestMapping("/api/departamento")
+@RequestMapping("/api/tatuador")
 public class TatuadorResource {
 
 	@Autowired

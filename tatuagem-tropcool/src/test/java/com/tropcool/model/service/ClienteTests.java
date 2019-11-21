@@ -179,6 +179,69 @@ public class ClienteTests extends AbstractIntegrationTests  {
 		this.clienteService.cadastrarCliente(cliente);
 	}
 	
+/** TELEFONE MAIOR DO QUE O PERMITIDO **/
+	
+	@Test(expected = DataIntegrityViolationException.class)
+	@Sql({ 
+		"/dataset/truncate.sql",
+								})
+	public void cadastrarClienteMustFailTelefoneSuperiorAoMax() {
+		Cliente cliente = new Cliente();
+		cliente.setLogin("adm");
+		cliente.setSenha("12345");
+		cliente.setNome("Gabriel Andrade");
+		cliente.setCpf("11111111112");
+		cliente.setEmail("gabrieladm@hotmail.com");
+		cliente.setAtivo(true);
+		cliente.setPerfil(RoleEnum.USER);
+		cliente.setTelefone("12365897421547");
+		
+		this.clienteService.cadastrarCliente(cliente);
+	}
+	
+	
+	
+	/** LOGIN MAIOR DO QUE O PERMITIDO **/
+	
+	@Test(expected = DataIntegrityViolationException.class)
+	@Sql({ 
+		"/dataset/truncate.sql",
+								})
+	public void cadastrarClienteMustFailLogSuperiorAoMax() {
+		Cliente cliente = new Cliente();
+		cliente.setLogin("admjrmshnrotijhdhenjcd");
+		cliente.setSenha("12345");
+		cliente.setNome("Gabriel Andrade");
+		cliente.setCpf("11111111112");
+		cliente.setEmail("gabrieladm@hotmail.com");
+		cliente.setAtivo(true);
+		cliente.setPerfil(RoleEnum.USER);
+		cliente.setTelefone("12365897421");
+		
+		this.clienteService.cadastrarCliente(cliente);
+	}
+	
+	
+	/**CPF MAIOR DO QUE O PERMITIDO **/
+	
+	@Test(expected = DataIntegrityViolationException.class)
+	@Sql({ 
+		"/dataset/truncate.sql",
+								})
+	public void cadastrarClienteMustFailCPFSuperiorAoMax() {
+		Cliente cliente = new Cliente();
+		cliente.setLogin("adm");
+		cliente.setSenha("12345");
+		cliente.setNome("Gabriel Andrade");
+		cliente.setCpf("11111111112236");
+		cliente.setEmail("gabrieladm@hotmail.com");
+		cliente.setAtivo(true);
+		cliente.setPerfil(RoleEnum.USER);
+		cliente.setTelefone("12365897421547");
+		
+		this.clienteService.cadastrarCliente(cliente);
+	}
+	
 	/**
 	 * ====================================== LISTAR ===========================================
 	 */
@@ -210,6 +273,20 @@ public class ClienteTests extends AbstractIntegrationTests  {
 
 		Assert.assertNotNull(cliente);
 	}
+	
+//	/**BUSCAR DETALHES DE UM USUARIO NÃO EXISTENTE **/
+//	@Test(expected = EmptyResultDataAccessException.class)
+//	@Sql({ 
+//		"/dataset/truncate.sql",  
+//			"/dataset/usuarios.sql", 
+//				"/dataset/clientes.sql"
+//										})
+//	public void detalharClienteMustFaill() {
+//		Cliente cliente = this.clienteRepository.findById(1008L).orElse(null);
+//
+//		Assert.assertNotNull(cliente);
+//	}
+	
 	/**
 	 * ====================================== Atualizar ===========================================
 	 */
