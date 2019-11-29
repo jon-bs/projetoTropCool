@@ -1,0 +1,114 @@
+        @font-face {
+            font-family: comic;
+            src: url('../../../../assets/fonts/comic.ttf'); 
+        }
+
+#conteudo{
+    border: 1px solid black;
+    position: relative;
+    width: 90%;
+    height: 90%;
+}
+
+#upper{
+    border: 1px solid blue;
+    position: relative;  
+    height: 20%;
+    width: 100%;
+    margin-top: 1%;
+}
+    
+#less{
+    border: 1px solid yellow;
+    margin-top:2%;
+    position: relative;
+    height: 72%;
+    width: 90%;
+    margin-left: 5%;
+}
+
+#backButton{
+    float: left;
+    height: 80%;
+    width: 12%;
+    margin-top: 1%;
+    margin-left: 2%;
+}
+
+#backIcon_div{
+    width: 100%;
+    height: 74%;
+}
+
+#backIcon{
+    width: 80%;
+    height: 100%;
+    margin-left: 10%;
+}
+
+#backText_div{
+    width: 100%;
+    height: 25%;
+    font-family: comic;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    color: black;    
+}
+
+#titleDate_div{
+    float: left;
+    position: relative;
+    height: 100%;
+    width: 50%;
+    margin-left: 10%;
+ }
+
+#title_div{
+    position: relative;
+    margin-left: 15%;
+    margin-top: 2%;
+    width: 70%;
+    height: 50%;
+    Font-family: comic;
+    text-align: center;
+    font-size: 55px;
+    font-style: italic;
+ }
+ #blackBar_div{
+    position: relative;
+    background-color: black;
+    width: 90%;
+    height: 2%;
+    border-radius: 10px;
+    margin-top: 0.5%;
+    margin-left: 5%;
+ }
+ #date_div{
+    position: relative;
+    border: 1px solid red;
+    width: 60%;
+    height:20% ;
+    margin-top: 0.5%;
+    margin-left: 20%;
+ }
+
+ #calendar{
+     width: 90%;
+     margin-top: 4%;
+     margin-left: 5%;
+     border-radius: 10px;
+     text-align: center;
+ }
+
+
+ #calendar_div{
+    border: 1px solid green;
+    float: right;
+    height: 90%;
+    width: 15%;
+    margin-top: 0.5%;
+    margin-right: 1%;
+    text-align: center;
+ }
