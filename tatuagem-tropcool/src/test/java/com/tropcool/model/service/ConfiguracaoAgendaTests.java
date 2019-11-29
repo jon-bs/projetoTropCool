@@ -79,5 +79,6 @@ public class ConfiguracaoAgendaTests extends AbstractIntegrationTests {
 	public void detalharConfiguracaoAgendaMustPass() {	
 		ConfiguracaoAgenda conf = configuracaoRepository.findById(1001L).orElse(null);
 		Assert.assertNotNull(conf);
+		Assert.assertTrue(conf.getId() == 1001L);
 	}
 }
