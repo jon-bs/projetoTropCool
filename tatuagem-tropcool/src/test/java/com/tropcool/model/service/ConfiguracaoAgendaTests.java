@@ -81,4 +81,27 @@ public class ConfiguracaoAgendaTests extends AbstractIntegrationTests {
 		Assert.assertNotNull(conf);
 		Assert.assertTrue(conf.getId() == 1001L);
 	}
+	
+	/**
+	 * ====================================== ATUALIZAR ===========================================
+	 */
+	
+	/* ATUALIZAR CONFIGURAÇÂO_AGENDA - ATUALIZAR DIA - MUSTPASS*/
+	
+	@Test
+	@Sql({ 
+		"/dataset/truncate.sql",
+		"/dataset/usuarios.sql",
+		"/dataset/clientes.sql",
+		"/dataset/tatuadores.sql",
+		"/dataset/configuracaoAgendas.sql"
+									})
+	public void atualizarConfiguracaoAgendaMustPass() {	
+		ConfiguracaoAgenda conf = configuracaoRepository.findById(1001L).orElse(null);
+		Assert.assertNotNull(conf);
+		Assert.assertTrue(conf.getId() == 1001L);
+		
+		conf.setDia(DiaSemanaEnum.TERCA);
+		
+	}
 }
