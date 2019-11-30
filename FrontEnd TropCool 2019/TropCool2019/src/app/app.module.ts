@@ -18,6 +18,7 @@ import { CabecalhoPerfilTatuadorComponent } from './view/components/cabecalho-pe
 import { AgendarComponent } from './view/agendar/agendar.component';
 import { CabecalhoTabelaAgendarComponent } from './view/components/cabecalho-tabela-agendar/cabecalho-tabela-agendar.component';
 import { TabelaAgendarComponent } from './view/components/tabela-agendar/tabela-agendar.component';
+import { AgendaAgendarComponent } from './view/components/agenda-agendar/agenda-agendar.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { TabelaAgendarComponent } from './view/components/tabela-agendar/tabela-
     CabecalhoPerfilTatuadorComponent,
     AgendarComponent,
     CabecalhoTabelaAgendarComponent,
-    TabelaAgendarComponent
+    TabelaAgendarComponent,
+    AgendaAgendarComponent
   ],
   imports: [
     BrowserModule,
