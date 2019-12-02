@@ -14,19 +14,19 @@
     height: 90%;
     margin-top: 0.2%;
     margin-left: 0.2%;
-    text-align: center;
-    border-radius: 10px;
-    position: relative;
     float: left;
+    position: relative;
+    border: 1px solid lightgrey;
+    border-radius: 10px;
+    text-align: center;
     font-family: comic;
     font-size: 19px;
     line-height:40px;
+    align-content: center;
     background-image: url("../../../../assets/images/backgroud-cellTable.png");
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 100% 100%;
-    
-    border: 1px solid lightgrey;
+    background-size: 100% 100%;    
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
@@ -44,18 +44,55 @@
     overflow: hidden;
 }
 
+/******************* BLOQUEADO *************************/
 .div_celLock{
-    width: 7.5%;
+    width: 12%;
 }
+
+/******************* EDITAR *************************/
 
 .div_celEdit{
     width: 12%;
 }
 
+#edit_icon{
+    position: relative;
+    margin-top: 3% ;
+    height: 80%;
+    width: auto;
+}
+
+#edit_button{
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid lightgrey;
+    background-image: url("../../../../assets/images/backgroud-cellTable.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+/******************* DELETAR *************************/
+
 .div_celDel{
     width: 12%;
 }
 
-.div_celLock{
-    width: 12%;
+#dell_icon{
+    height: 100%;
+    width: auto;
 }
+
+#dell_button{
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid lightgrey;
+    background-image: url("../../../../assets/images/backgroud-cellTable.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+

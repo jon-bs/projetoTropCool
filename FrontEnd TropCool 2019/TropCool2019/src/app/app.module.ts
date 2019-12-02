@@ -19,6 +19,8 @@ import { AgendarComponent } from './view/agendar/agendar.component';
 import { CabecalhoTabelaAgendarComponent } from './view/components/cabecalho-tabela-agendar/cabecalho-tabela-agendar.component';
 import { TabelaAgendarComponent } from './view/components/tabela-agendar/tabela-agendar.component';
 import { AgendaAgendarComponent } from './view/components/agenda-agendar/agenda-agendar.component';
+import { TipoUsuarioComponent } from './view/components/tipo-usuario/tipo-usuario.component';
+import { CadastroComponent } from './view/cadastro/cadastro.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { AgendaAgendarComponent } from './view/components/agenda-agendar/agenda-
     AgendarComponent,
     CabecalhoTabelaAgendarComponent,
     TabelaAgendarComponent,
-    AgendaAgendarComponent
+    AgendaAgendarComponent,
+    TipoUsuarioComponent,
+    CadastroComponent
   ],
   imports: [
     BrowserModule,
