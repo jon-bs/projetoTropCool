@@ -1,37 +1,37 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewContainerRef} from '@angular/core';
-import { ConfiguracaoAgenda } from 'src/app/model/configuracao-agenda';
-import { TipoAcaoValues } from 'src/app/model/tipo-acao';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { TipoAcaoValues } from 'src/app/model/tipo-acao';
 import { MessagesService } from 'src/app/service/messages.service';
 import { TdDialogService } from '@covalent/core/dialogs';
+import { ConfiguracaoAgenda } from 'src/app/model/configuracao-agenda';
 import { ConfiguracaoAgendaService } from 'src/app/service/configuracao-agenda.service';
-import { __param } from 'tslib';
 
 
 @Component({
-  selector: 'app-agendar',
-  templateUrl: './agendar.component.html',
-  styleUrls: ['./agendar.component.css']
+  selector: 'app-configuracao-search',
+  templateUrl: './configuracao-search.component.html',
+  styleUrls: ['./configuracao-search.component.css']
 })
-export class AgendarComponent implements OnInit {
+export class ConfiguracaoSearchComponent implements OnInit {
 
-  // LISTA DE CONFIGURAÇÕES DE AGENDA
+  configuracoes : Array<ConfiguracaoAgenda>;
 
-  configuracaoes: Array<ConfiguracaoAgenda>;
-/*
-  *@param router
-  *@param activatedRoute
-  *@param configuracaoService
-*/
+  /**
+   * Construtor da classe
+   * @param router 
+   * @param activatedRoute 
+   * @param departamentoService 
+   */
   constructor(
-      private router: Router,
-      private activatedRoute: ActivatedRoute,
-      private configuracaoService: ConfiguracaoAgendaService,
-      private messageService: MessagesService,
-      private _dialogService: TdDialogService,
-      private _viewContainerRef: ViewContainerRef) { 
-}
-/**
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private configuracaoService: ConfiguracaoAgendaService,
+    private messageService: MessagesService,
+    private _dialogService: TdDialogService,
+    private _viewContainerRef: ViewContainerRef
+    ) { }
+
+  /**
    * Método que é executado ao carregar a classe
    */
   ngOnInit() {
@@ -52,7 +52,7 @@ export class AgendarComponent implements OnInit {
    */
   navigateTo(evento) {
     console.log(evento.acaoRealizada);
-    let id: number  = evento.configuracaoSelecionadaId;
+    let id: number  = evento.departamentoSelecionadoId;
     if(evento.acaoRealizada == TipoAcaoValues[0]){
       this.router.navigate(['detalhes/'+id], { relativeTo: this.activatedRoute });
     }
@@ -70,7 +70,7 @@ export class AgendarComponent implements OnInit {
    */
   listar(){
     this.configuracaoService.listar().subscribe(dados => {
-      this.configuracaoes = dados;
+      this.configuracoes = dados;
     },
     (error: any) => {
       console.log(error);
@@ -88,17 +88,17 @@ export class AgendarComponent implements OnInit {
 
   openRemoverConfirm(id: number): void {
     this._dialogService.openConfirm({
-      message: 'Tem certeza que deseja excluir esse departamento?',
+      message: 'Tem certeza que deseja excluir essa Configuracao?',
       disableClose: true, // defaults to false
       viewContainerRef: this._viewContainerRef, //OPTIONAL
-      title: 'Excluir departamento', //OPTIONAL, hides if not provided
+      title: 'Excluir configuracao', //OPTIONAL, hides if not provided
       cancelButton: 'Não', //OPTIONAL, defaults to 'CANCEL'
       acceptButton: 'Sim', //OPTIONAL, defaults to 'ACCEPT'
       width: '500px', //OPTIONAL, defaults to 400px
     }).afterClosed().subscribe((accept: boolean) => {
       if (accept) {
         this.configuracaoService.remover(id).subscribe(dados => {
-          this.messageService.toastSuccess('Departamento excluído com sucesso.');
+          this.messageService.toastSuccess('Configuracao excluído com sucesso.');
           this.listar();
         },
         (error: any) => {
@@ -111,4 +111,5 @@ export class AgendarComponent implements OnInit {
       }
     });
   }
+
 }

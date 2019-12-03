@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { HorarioAgendado } from '../model/horario-agendado';
+import { ConfiguracaoAgenda } from '../model/configuracao-agenda';
 
 @Injectable({
   providedIn: 'root'
@@ -10,22 +10,22 @@ export class ConfiguracaoAgendaService {
   constructor(private http: HttpClient) { }
 
   listar(){
-    return this.http.get<HorarioAgendado[]>('http://localhost:4200/api/api/horario_agendado/list/');
+    return this.http.get<ConfiguracaoAgenda[]>('http://localhost:4200/api/api/configuracao_agenda/list/');
   }
 
-  detalhar(horario_agendadoId: number){
-    return this.http.get<HorarioAgendado>('http://localhost:4200/api/api/horario_agendado/find?id='+horario_agendadoId);
+  detalhar(configuracao_agendaId: number){
+    return this.http.get<ConfiguracaoAgenda>('http://localhost:4200/api/api/configuracao_agenda/find?id='+configuracao_agendaId);
   }
 
-  cadastrar(horario_agendado: HorarioAgendado){
-    return this.http.post<HorarioAgendado>('http://localhost:4200/api/api/horario_agendado/insert/', horario_agendado);
+  cadastrar(configuracao_agenda: ConfiguracaoAgenda){
+    return this.http.post<ConfiguracaoAgenda>('http://localhost:4200/api/api/configuracao_agenda/insert/', configuracao_agenda);
   }
 
-  editar(horario_agendado: HorarioAgendado){
-    return this.http.post<HorarioAgendado>('http://localhost:4200/api/api/horario_agendado/update/', horario_agendado);
+  editar(configuracao_agenda: ConfiguracaoAgenda){
+    return this.http.post<ConfiguracaoAgenda>('http://localhost:4200/api/api/configuracao_agenda/update/', configuracao_agenda);
   }
 
-  remover(horario_agendadoId: number){
-    return this.http.get('http://localhost:4200/api/api/horario_agendado/remove?id='+horario_agendadoId);
+  remover(configuracao_agendaId: number){
+    return this.http.get('http://localhost:4200/api/api/configuracao_agenda/remove?id='+configuracao_agendaId);
   }
 }
