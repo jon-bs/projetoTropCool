@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { ConfiguracaoAgenda } from '../model/configuracao-agenda';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'

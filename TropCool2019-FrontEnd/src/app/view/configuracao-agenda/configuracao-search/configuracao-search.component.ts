@@ -20,7 +20,7 @@ export class ConfiguracaoSearchComponent implements OnInit {
    * Construtor da classe
    * @param router 
    * @param activatedRoute 
-   * @param departamentoService 
+   * @param configuracaoService 
    */
   constructor(
     private router: Router,
@@ -39,7 +39,7 @@ export class ConfiguracaoSearchComponent implements OnInit {
   }
 
   /**
-   * Método que redireciona para cadastrar departamento
+   * Método que redireciona para cadastrar configuracao
    */
   navigateToNovo() {
     this.router.navigate(['cadastrar'], { relativeTo: this.activatedRoute });
@@ -47,12 +47,12 @@ export class ConfiguracaoSearchComponent implements OnInit {
   }
 
   /**
-   * Método que redireciona para alterar, excluir ou visualizar departamento
+   * Método que redireciona para manutenção de configuração
    * @param evento 
    */
   navigateTo(evento) {
     console.log(evento.acaoRealizada);
-    let id: number  = evento.departamentoSelecionadoId;
+    let id: number  = evento.configuracaoSelecionadaId;
     if(evento.acaoRealizada == TipoAcaoValues[0]){
       this.router.navigate(['detalhes/'+id], { relativeTo: this.activatedRoute });
     }
@@ -66,9 +66,10 @@ export class ConfiguracaoSearchComponent implements OnInit {
   }
 
   /**
-   * Método para listar os departamentos
+   * Método para listar as configuracoes
    */
   listar(){
+    console.log('entrooooooou');
     this.configuracaoService.listar().subscribe(dados => {
       this.configuracoes = dados;
     },
@@ -80,7 +81,7 @@ export class ConfiguracaoSearchComponent implements OnInit {
   }
     
   /**
-   * Método para remover um departamento
+   * Método para remoção
    */
   remover(id: number){
     this.openRemoverConfirm(id);
@@ -98,7 +99,7 @@ export class ConfiguracaoSearchComponent implements OnInit {
     }).afterClosed().subscribe((accept: boolean) => {
       if (accept) {
         this.configuracaoService.remover(id).subscribe(dados => {
-          this.messageService.toastSuccess('Configuracao excluído com sucesso.');
+          this.messageService.toastSuccess('Configuracao excluída com sucesso.');
           this.listar();
         },
         (error: any) => {
