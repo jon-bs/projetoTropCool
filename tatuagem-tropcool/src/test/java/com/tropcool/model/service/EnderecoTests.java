@@ -143,7 +143,7 @@ public class EnderecoTests extends AbstractIntegrationTests {
 		
 	}
 	
-	@Test(expected = ValidationException.class)
+	@Test
 	@Sql({
 		"/dataset/truncate.sql",
 		"/dataset/enderecos.sql",

@@ -44,6 +44,7 @@ import { HorarioAgendadoService } from './service/horario-agendado.service';
 import { Usuario } from './model/usuario';
 import { UsuarioService } from './service/usuario.service';
 import { MessagesService } from './service/messages.service';
+import { MenuComponent } from './view/menu/menu.component';
 //import { HorarioAgendadoComponent } from './model/horario-agendado.component';
 
 @NgModule({
@@ -64,7 +65,8 @@ import { MessagesService } from './service/messages.service';
     AgendarComponent,
     CabecalhoTabelaAgendarComponent,
     TabelaAgendarComponent,
-    //CRIADOS POR GABRIEL ANDRADE
+    MenuComponent,
+    // CRIADOS POR GABRIEL 
     ConfiguracaoSearchComponent,
     ConfiguracaoDetailComponent,
     ConfiguracaoListComponent,

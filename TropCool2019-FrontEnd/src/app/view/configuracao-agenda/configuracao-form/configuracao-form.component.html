@@ -1,1 +1,95 @@
-<p>configuracao-form works!</p>
+<div fxLayout="column">
+  <div fxLayout="row" class="header-form">
+    <span fxFlex>Cadastrar/Alterar Configuração Agenda</span>
+    <div>
+      <button mat-raised-button class="form-button bgc-grey-500 tc-grey-50" (click)="onBack()">
+        Cancelar
+      </button>
+      <button [disabled]="configuracaoForm.invalid" mat-raised-button color="accent" class="form-button"
+        (click)="onSave()">
+        Salvar
+      </button>
+    </div>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="center start">
+    <mat-card class="background-color" fxFlex="90">
+      <form [formGroup]="configuracaoForm" novalidate>
+        <div fxLayout="column" fxFlex=90>
+
+          <div fxLayout="column">
+            <div fxLayout="row" fxFlex=50>
+              <!--horarioInicio-->
+              <mat-form-field fxFlex [floatLabel]="'always'">
+                <mat-label>Horario Ínicio</mat-label>
+                <input matInput id="horarioInicio" formControlName="09:30" placeholder="Horario de Ínicio" layout-align="center end" required>
+                <mat-error *ngIf="configuracaoForm.get('horarioInicio').hasError('maxLength')">
+                  Máximo 5 caracteres.
+                </mat-error>
+                <mat-error *ngIf="configuracaoForm.get('nome').hasError('required')">
+                  *Campo Obrigatório
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div fxLayout="row" fxFlex=50>
+              <!--HorarioTermino-->
+              <mat-form-field fxFlex [floatLabel]="'always'">
+                <mat-label>Horario Termino</mat-label>
+                <input matInput id="HorarioTermino" formControlName="HorarioTermino" placeholder="HorarioTermino" layout-align="center end" required>
+                <mat-error *ngIf="configuracaoForm.get('HorarioTermino').hasError('maxLength')">
+                  Máximo 11 caracteres.
+                </mat-error>
+                <mat-error *ngIf="configuracaoForm.get('HorarioTermino').hasError('required')">
+                  *Campo Obrigatório.
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div fxLayout="row" fxFlex=50>
+              <!--DiaSemana-->
+              <mat-form-field fxFlex [floatLabel]="'always'">
+                <mat-label>Dia da Semana</mat-label>
+                <mat-select formControlName="diaSemana" placeholder="Selecione um dia" required>
+                  <mat-option *ngFor="let dia of diaSemanaValues" [value]="diaSemana">
+                    {{ diaSemana }}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="configuracaoForm.get('diaSemana').hasError('diaSemana')">
+                  Seleção Obrigatória.
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxFlex=50>
+              <!--Tatuador-->
+              <mat-form-field fxFlex [floatLabel]="'always'">
+                <mat-label>Tatuador</mat-label>
+                <input type="text" placeholder="Selecione um tatuador" matInput id="tatuador"  formControlName="tatuador"
+                  [matAutocomplete]="autoDep" required>
+                <mat-autocomplete #autoDep="matAutocomplete" [displayWith]="displayTatuador"
+                  (optionSelected)="selectTatuador($event)">
+                  <mat-option *ngFor="let tatuador of tatuadorList" [value]="item">
+                    {{tatuador.nome}}
+                  </mat-option>
+                </mat-autocomplete>
+                <mat-error *ngIf="configuracaoForm.get('tatuador').hasError('required')">
+                  Seleção Obrigatória.
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+
+
+            <div fxLayout="row" fxFlex=50>
+              <!--Data de nascimento-->
+                <mat-form-field>
+                    <input matInput [matDatepicker]="picker" placeholder="Escolha uma data" formControlName="dataNascimento" required>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+            </div>
+          </div>
+
+        </div>
+      </form>
+    </mat-card>
+  </div>
+</div>

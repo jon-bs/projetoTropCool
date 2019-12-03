@@ -4,7 +4,8 @@
                 <mat-list-item  
                 class="item-list" role="listitem" fxFlex>
                         <div fxFlex (click)="selecionar(conf.id, 0)">
-                                <span fxFlex>{{conf.diaSemana | uppercase}}</span>
+                                <span fxFlex>{{conf.id}}</span>
+                                <span fxFlex>{{conf.horaInicio}}-{{conf.horaTermino}}</span>
                         </div>
                         <button class="button-option" (click)="selecionar(conf.id, 1)">
                                 <mat-icon>edit</mat-icon></button>

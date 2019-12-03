@@ -148,7 +148,7 @@ public class PostTests extends AbstractIntegrationTests{
 		Assert.assertNotNull(post);
 		Assert.assertNotNull(post.getTatuador());
 		post.setTatuador(null);
-		postRepository.save(post);
+		//postRepository.save(post);
 	}
 	/**
 	 * ====================================== REMOVER ===========================================
