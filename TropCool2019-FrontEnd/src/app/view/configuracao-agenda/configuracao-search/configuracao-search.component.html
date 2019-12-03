@@ -1,0 +1,16 @@
+<p>configuracao-search works!</p>
+<div fxLayout="column" fxFlex class="div-content">
+
+        <div fxLayout="row" class="header-form">
+                <span fxFlex>Consulta de Configuracoes</span>
+                <div>
+                        <button mat-raised-button color="accent" 
+                        (click)="navigateToNovo()">Nova configuracao</button>
+                </div>
+        </div>
+                
+        <div fxFlex>
+                <app-configuracao-list [configuracoes]="configuracoes" 
+                (selecionarConfiguracao)="navigateTo($event)"></app-configuracao-list>
+        </div>
+</div>
