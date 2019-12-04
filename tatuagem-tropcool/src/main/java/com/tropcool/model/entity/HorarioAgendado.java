@@ -1,5 +1,6 @@
 package com.tropcool.model.entity;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -20,7 +21,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class HorarioAgendado extends AbstractEntity{
+public class HorarioAgendado extends AbstractEntity implements Serializable{
 	
 	@NotNull
     private LocalDateTime horario;

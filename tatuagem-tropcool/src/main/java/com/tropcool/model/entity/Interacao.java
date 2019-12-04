@@ -1,5 +1,6 @@
 package com.tropcool.model.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -23,7 +24,7 @@ import lombok.NoArgsConstructor;
 //@EqualsAndHashCode(callSuper = true)
 //@NoArgsConstructor
 @AllArgsConstructor
-public class Interacao extends Mensagem {
+public class Interacao extends Mensagem implements Serializable{
 	
 	public Interacao() {
 		// TODO Auto-generated constructor stub

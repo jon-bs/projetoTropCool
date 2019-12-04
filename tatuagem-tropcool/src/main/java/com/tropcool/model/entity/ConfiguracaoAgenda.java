@@ -1,5 +1,6 @@
 package com.tropcool.model.entity;
 
+import java.io.Serializable;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +26,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class ConfiguracaoAgenda extends AbstractEntity{
+public class ConfiguracaoAgenda extends AbstractEntity implements Serializable{
 	
 	@NotNull
 	private LocalTime horaInicio;

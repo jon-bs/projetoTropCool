@@ -1,5 +1,6 @@
 package com.tropcool.model.entity;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class Mensagem{
+public class Mensagem implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	

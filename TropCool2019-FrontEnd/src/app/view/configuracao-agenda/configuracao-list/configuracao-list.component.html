@@ -1,11 +1,11 @@
-<p>configuracao-list works!</p>
+<p></p>
 <mat-card class="background-color" fxFlex>
         <mat-list *ngFor="let conf of configuracoes" role="list" >
                 <mat-list-item  
                 class="item-list" role="listitem" fxFlex>
                         <div fxFlex (click)="selecionar(conf.id, 0)">
                                 <span fxFlex>{{conf.id}}</span>
-                                <span fxFlex>{{conf.horaInicio}}-{{conf.horaTermino}}</span>
+                                <!--<span fxFlex>{{conf.horaInicio}}-{{conf.horaTermino}}</span>-->
                         </div>
                         <button class="button-option" (click)="selecionar(conf.id, 1)">
                                 <mat-icon>edit</mat-icon></button>

@@ -1,5 +1,6 @@
 package com.tropcool.model.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +25,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class Tatuador extends Usuario{
+public class Tatuador extends Usuario implements Serializable{
 	
 	/**
 	 * 
