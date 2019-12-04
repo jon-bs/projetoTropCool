@@ -18,21 +18,43 @@ public class ConfiguracaoAgendaService {
 	@Autowired
 	private ConfiguracaoAgendaRepository configuracaoAgendaRepository;
 	
+	/**
+	 * @param configuracao
+	 * @return
+	 */
 	public ConfiguracaoAgenda cadastrarConfiguracaoAgenda(ConfiguracaoAgenda configuracaoAgenda) {
 		return this.configuracaoAgendaRepository.save(configuracaoAgenda);
 	}
 	
+	/**
+	 * @param configuracao
+	 * @return
+	 */
+	public ConfiguracaoAgenda atualizarConfiguracaoAgenda(ConfiguracaoAgenda configuracaoAgenda) {
+		return this.configuracaoAgendaRepository.save(configuracaoAgenda);
+	}
+	
+	/**
+	 * @param id
+	 * @return
+	 */
 	public ConfiguracaoAgenda detalharConfiguracaoAgenda(Long id) {
 		 ConfiguracaoAgenda configuracaoAgenda = this.configuracaoAgendaRepository.findById(id).orElse(null);
 		 Assert.notNull(configuracaoAgenda,"Essa configuração de agenda não foi encontrada, busca realizada pelo id : " + id);
 		 return configuracaoAgenda;
 	}
 	
+	/**
+	 * @return
+	 */
 	public List<ConfiguracaoAgenda> listaConfiguracaoAgenda(){
 		return this.configuracaoAgendaRepository.findAll();
 	}
 	
-	public void removeConfiguracaoAgenda(Long id) {
+	/**
+	 * @param id
+	 */
+	public void removerConfiguracaoAgenda(Long id) {
 		this.configuracaoAgendaRepository.deleteById(id);
 	}
 }

@@ -37,8 +37,13 @@ public class ConfiguracaoAgendaResource {
 		return this.configuracaoAgendaService.detalharConfiguracaoAgenda(id);
 	}
 	
+	@GetMapping("/update")
+	public ConfiguracaoAgenda atualizar(@RequestBody ConfiguracaoAgenda configuracaoAgenda) {
+		return this.configuracaoAgendaService.atualizarConfiguracaoAgenda(configuracaoAgenda);
+	}
+	
 	@GetMapping("/remove")
 	public void remover(@RequestParam("id") Long id) {
-		this.configuracaoAgendaService.removeConfiguracaoAgenda(id);
+		this.configuracaoAgendaService.removerConfiguracaoAgenda(id);
 	}
 }
