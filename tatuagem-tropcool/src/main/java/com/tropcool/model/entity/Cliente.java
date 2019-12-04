@@ -12,6 +12,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -35,6 +37,7 @@ public class Cliente extends Usuario implements Serializable{
     @NotBlank
 	private String telefone;
     
+    @JsonIgnoreProperties("cliente")
     @OneToMany(
 	    		targetEntity = HorarioAgendado.class, 
 	    		cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},

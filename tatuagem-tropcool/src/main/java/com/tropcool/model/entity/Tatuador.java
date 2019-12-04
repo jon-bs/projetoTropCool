@@ -13,6 +13,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -53,6 +54,7 @@ public class Tatuador extends Usuario implements Serializable{
 		)
 	private Endereco endereco;
 	
+	@JsonIgnoreProperties("tatuador")
 	@OneToMany(
     		targetEntity = Post.class, 
     		cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},
@@ -62,6 +64,7 @@ public class Tatuador extends Usuario implements Serializable{
 		)
 	private List<Post> posts = new ArrayList<Post>();
 	
+	@JsonIgnoreProperties("tatuador")
 	@OneToMany(
     		targetEntity = ConfiguracaoAgenda.class, 
     		cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},

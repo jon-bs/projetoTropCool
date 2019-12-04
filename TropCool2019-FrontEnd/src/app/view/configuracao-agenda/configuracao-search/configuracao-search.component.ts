@@ -18,9 +18,9 @@ export class ConfiguracaoSearchComponent implements OnInit {
 
   /**
    * Construtor da classe
-   * @param router 
-   * @param activatedRoute 
-   * @param configuracaoService 
+   * @param router
+   * @param activatedRoute
+   * @param configuracaoService
    */
   constructor(
     private router: Router,
@@ -31,24 +31,19 @@ export class ConfiguracaoSearchComponent implements OnInit {
     private _viewContainerRef: ViewContainerRef
     ) { }
 
-  /**
-   * Método que é executado ao carregar a classe
-   */
+
   ngOnInit() {
     this.listar();
   }
 
-  /**
-   * Método que redireciona para cadastrar configuracao
-   */
   navigateToNovo() {
     this.router.navigate(['cadastrar'], { relativeTo: this.activatedRoute });
 
   }
 
   /**
-   * Método que redireciona para manutenção de configuração
-   * @param evento 
+
+   * @param evento
    */
   navigateTo(evento) {
     console.log(evento.acaoRealizada);
@@ -58,11 +53,11 @@ export class ConfiguracaoSearchComponent implements OnInit {
     }
     else if(evento.acaoRealizada == TipoAcaoValues[1]){
       this.router.navigate(['alterar/'+id], { relativeTo: this.activatedRoute });
-    
+
     } else if(evento.acaoRealizada == TipoAcaoValues[2]){
       this.remover(id);
     }
-    
+
   }
 
   /**
@@ -72,6 +67,8 @@ export class ConfiguracaoSearchComponent implements OnInit {
     console.log('entrooooooou');
     this.configuracaoService.listar().subscribe(dados => {
       this.configuracoes = dados;
+      console.log('recuperou dados');
+      console.log(dados);
     },
     (error: any) => {
       console.log(error);
@@ -79,10 +76,7 @@ export class ConfiguracaoSearchComponent implements OnInit {
       this.messageService.toastError(error.error.message);
     });
   }
-    
-  /**
-   * Método para remoção
-   */
+
   remover(id: number){
     this.openRemoverConfirm(id);
   }
@@ -105,7 +99,7 @@ export class ConfiguracaoSearchComponent implements OnInit {
         (error: any) => {
           console.log(error.error.message);
           this.messageService.toastError(error.error.message);
-          
+
         });
       } else {
         // DO SOMETHING ELSE

@@ -22,6 +22,7 @@ import javax.persistence.OneToMany;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
@@ -63,6 +64,7 @@ public class Usuario extends AbstractEntity implements UserDetails{
 	private String email;
 	private Boolean ativo;
 	
+	@JsonIgnoreProperties("remetente")
 	@OneToMany(
 			targetEntity = Mensagem.class,
 			cascade= {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, 
@@ -72,6 +74,7 @@ public class Usuario extends AbstractEntity implements UserDetails{
 			)
 	private List<Mensagem> mensagemEnviada = new ArrayList<Mensagem>();
 	
+	@JsonIgnoreProperties("destinatario")
 	@OneToMany(
 			targetEntity = Mensagem.class,
 			cascade= {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, 
