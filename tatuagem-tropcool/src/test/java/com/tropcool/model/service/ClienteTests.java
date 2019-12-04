@@ -262,30 +262,33 @@ public class ClienteTests extends AbstractIntegrationTests  {
 	 * ====================================== DETALHAR ===========================================
 	 */
 	
+	/* DETALHAR CLIENTE - MUSTPASS */
+	
 	@Test
 	@Sql({ 
 		"/dataset/truncate.sql",  
-			"/dataset/usuarios.sql", 
-				"/dataset/clientes.sql"
+		"/dataset/usuarios.sql", 
+		"/dataset/clientes.sql"
 										})
 	public void detalharClienteMustPass() {
 		Cliente cliente = this.clienteRepository.findById(1002L).orElse(null);
-
 		Assert.assertNotNull(cliente);
+		Assert.assertTrue(cliente.getId() == 1002L);
 	}
 	
-//	/**BUSCAR DETALHES DE UM USUARIO NÃO EXISTENTE **/
-//	@Test(expected = EmptyResultDataAccessException.class)
-//	@Sql({ 
-//		"/dataset/truncate.sql",  
-//			"/dataset/usuarios.sql", 
-//				"/dataset/clientes.sql"
-//										})
-//	public void detalharClienteMustFaill() {
-//		Cliente cliente = this.clienteRepository.findById(1008L).orElse(null);
-//
-//		Assert.assertNotNull(cliente);
-//	}
+	/*  DETALHAR CLIENTE - INEXISTENTE - MUSTPASS */
+	
+	@Test
+	@Sql({
+		"/dataset/truncate.sql",  
+		"/dataset/usuarios.sql", 
+		"/dataset/clientes.sql"							
+	})
+	public void detalharClienteInexistenteMustPass() {
+		Cliente cliente = this.clienteRepository.findById(1010L).orElse(null);
+		Assert.assertNull("Cliente não encontrado", cliente);
+	}
+	
 	
 	/**
 	 * ====================================== Atualizar ===========================================
