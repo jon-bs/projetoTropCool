@@ -3,6 +3,7 @@ package com.tropcool.model.service;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -64,6 +65,100 @@ public class HorarioAgendadoTests extends AbstractIntegrationTests{
 		horarioService.agendarHorario(horario);
 		Assert.assertNotNull(horario.getId());
 	}
+	
+	/**
+	 * ====================================== LISTAR ===========================================
+	 */
+	
+	/* LISTAR HORARIO_AGENDADO - MUSTPASS*/
+	
 
+	@Test
+	@Sql({ 
+		"/dataset/truncate.sql",
+		"/dataset/usuarios.sql",
+		"/dataset/clientes.sql",
+		"/dataset/tatuadores.sql",
+		"/dataset/configuracaoAgendas.sql"
+		
+	})
+	public void listarHorarioAgendadoMustPass() {
+		List<HorarioAgendado> l = horarioRepository.findAll();
+	}
+
+	/**
+	 * ====================================== RECUPERAR ===========================================
+	 */
+	
+	/* RECUPERAR HORARIO_AGENDADO - MUSTPASS*/
+	
+
+	@Test
+	@Sql({ 
+		"/dataset/truncate.sql",
+		"/dataset/usuarios.sql",
+		"/dataset/clientes.sql",
+		"/dataset/tatuadores.sql",
+		"/dataset/configuracaoAgendas.sql"
+		
+	})
+	public void recuperarHorarioAgendadoMustPass() {
+		HorarioAgendado h = horarioRepository.findById(1001L).orElse(null);
+		Assert.assertNotNull(h);
+	}
+	
+	/**
+	 * ====================================== REMOVER ===========================================
+	 */
+	
+	/* REMOVER HORARIO_AGENDADO - POR ID - MUSTPASS*/
+	
+
+	@Test
+	@Sql({ 
+		"/dataset/truncate.sql",
+		"/dataset/usuarios.sql",
+		"/dataset/clientes.sql",
+		"/dataset/tatuadores.sql",
+		"/dataset/configuracaoAgendas.sql"
+		
+	})
+	public void removerHorarioAgendadoMustPass() {
+		HorarioAgendado h = horarioRepository.findById(1001L).orElse(null);
+		Assert.assertNotNull(h);
+		
+		horarioRepository.deleteById(1001L);
+		
+		h = horarioRepository.findById(1001L).orElse(null);
+		Assert.assertNull(h);
+	}
+	
+	/**
+	 * ====================================== ALTERAR ===========================================
+	 */
+	
+	/* EDITAR HORARIO_AGENDADO - ALTERA CONFIGURACAO - MUSTPASS*/
+	
+
+	@Test
+	@Sql({ 
+		"/dataset/truncate.sql",
+		"/dataset/usuarios.sql",
+		"/dataset/clientes.sql",
+		"/dataset/tatuadores.sql",
+		"/dataset/configuracaoAgendas.sql"
+		
+	})
+	public void editarHorarioAgendadoConfiguracaoMustPass() {
+		HorarioAgendado h = horarioRepository.findById(1001L).orElse(null);
+		Assert.assertNotNull(h);
+		
+		h.setConfiguracao(configuracaoRepository.findById(1002L).orElse(null));
+		Assert.assertNotNull(h.getConfiguracao());
+		
+		horarioRepository.save(h);
+		
+		h = horarioRepository.findById(1001L).orElse(null);
+	}
 
 }

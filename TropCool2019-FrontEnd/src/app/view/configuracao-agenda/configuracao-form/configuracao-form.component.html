@@ -18,20 +18,20 @@
 
           <div fxLayout="column">
             <div fxLayout="row" fxFlex=50>
-              <!--horaInicio -->
+              <!--horaInicio  -->
               <mat-form-field fxFlex [floatLabel]="'always'">
                 <mat-label>Horario Termino</mat-label>
-                <input matInput id="horaInicio" formControlName="horaInicio" placeholder="HorarioInicio" layout-align="center end" required>
-                <mat-error *ngIf="configuracaoForm.get('horaInicio').hasError('maxLength')">
+                <input matInput id="inicio" formControlName="inicio" placeholder="HorarioInicio" layout-align="center end" required>
+                <mat-error *ngIf="configuracaoForm.get('inicio').hasError('maxLength')">
                   Máximo 11 caracteres.
                 </mat-error>
-                <mat-error *ngIf="configuracaoForm.get('horaInicio').hasError('required')">
+                <mat-error *ngIf="configuracaoForm.get('inicio').hasError('required')">
                   *Campo Obrigatório.
                 </mat-error>
               </mat-form-field>
             </div>
             <div fxLayout="row" fxFlex=50>
-            
+           
               <!--HorarioTermino-->
               <mat-form-field fxFlex [floatLabel]="'always'">
                 <mat-label>Horario Termino</mat-label>

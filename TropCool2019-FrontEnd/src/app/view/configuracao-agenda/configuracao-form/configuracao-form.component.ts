@@ -65,7 +65,7 @@ export class ConfiguracaoFormComponent implements OnInit {
       this.configuracaoForm = this.fb.group(
         {
           tatuador: [null, { validators: [Validators.required], updateOn: 'blur' }],
-          horaInico: [null, {validators: [Validators.required, Validators.maxLength(18)], updateOn: 'blur'}],
+          inico: [null, {validators: [Validators.required, Validators.maxLength(18)], updateOn: 'blur'}],
           horaTermino: [null, {validators: [Validators.required, Validators.maxLength(18)], updateOn: 'blur'}],
           diaSemanaValues: [null, { validators: [Validators.required] }],
         }
@@ -80,7 +80,7 @@ export class ConfiguracaoFormComponent implements OnInit {
   
         this.configuracao.tatuador = this.configuracaoForm.get("tatuador").value;
         this.configuracao.diaSemana = this.configuracaoForm.get("diaSemanaValues").value;
-        this.configuracao.horaInicio = this.configuracaoForm.get("horaInicio").value;
+        this.configuracao.horaInicio = this.configuracaoForm.get("inicio").value;
         this.configuracao.horaTermino = this.configuracaoForm.get("horaTermino").value;
         console.log(this.configuracao);
         // cadastro || edição
@@ -119,7 +119,7 @@ export class ConfiguracaoFormComponent implements OnInit {
       this.configuracaoService.detalhar(this.configuracao.id).subscribe(res => {
         this.configuracaoForm.get("tatuador").setValue(res.tatuador);
         this.configuracaoForm.get("diaSemanaValues").setValue(res.diaSemana);
-        this.configuracaoForm.get("horaInicio").setValue(res.horaInicio);
+        this.configuracaoForm.get("inicio").setValue(res.horaInicio);
         this.configuracaoForm.get("horaTermino").setValue(res.horaTermino);
         this.isOnUpdate = true;
       },
