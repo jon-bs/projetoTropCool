@@ -4,11 +4,10 @@
 }
 
 body{
-    height: auto;
+    height: 100%;
 }
 
-#div_PageBody{	
-    border: 1px solid green;							  /*	div que compõe 100% da area da pagina */
+#div_PageBody{			  /*	div que compõe 100% da area da pagina */
     position: absolute;
     background-image: url("../../../assets/images/wallpaper_3.jpg");
     top:0;
@@ -20,13 +19,13 @@ body{
 
 #conteudo{	                                                /*	div que compõe 100% da area de conteudo da pagina */
     border: 3px solid black;
-    background-image: url("../../../assets/images/tatoo mulher.png");      
-    background-repeat: no-repeat;    
-    border-radius: 20px;							  
-    position: relative;
-    margin-top: 2%;
-    margin-left: 10%;
+    border-radius: 20px;
+    position: fixed;
     width: 80%;
     height: 80%;
+    margin-top: 7%;
+    margin-left: 10%;
+    background-image: url("../../../assets/images/tatoo mulher.png");      
+    background-repeat: no-repeat;
     background-color: rgba(255, 255, 255, 0.6);
 }

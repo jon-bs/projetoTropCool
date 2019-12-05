@@ -115,6 +115,7 @@
  }
 
  #cabTab{
+     position: relative;
     border: 1px solid yellow;
     width: 100%;
     height: 10%;
@@ -123,14 +124,14 @@
  #tab{
     border: 1px solid blue;
     width: 100%;
-    height: 99%;
+    height: 89%;
     overflow: scroll;
  }
 
  .cellTable{
     height: 90%;
     margin-top: 0.2%;
-    margin-left:1.5%;
+    margin-left:1%;
     text-align: center;
     border-radius: 10px;
     position: relative;
@@ -138,42 +139,37 @@
     font-family: comic;
     font-size: 18px;
     line-height:40px;
-    border: ;
+    overflow: hidden;
  }
 
-.div_celClock{
-    border: 1px solid green;    
+.div_celClock{  
     width: 5%;
     margin-left: 7%;
 }
 
 .div_celTime{
-    border: 1px solid red;
     width: 10%;
 }
 
+
+
 .div_celUser{
-    border: 1px solid yellow;
     width: 35%;
     overflow: hidden;
 }
 
 .div_celLock{
-    border: 1px solid green;
     width: 5%;
 }
 
 .div_celEdit{
-    border: 1px solid orange;
     width: 10%;
 }
 
 .div_celDel{
-    border: 1px solid red;
     width: 10%;
 }
 
 .div_celLock{
-    border: 1px solid red;
     width: 10%;
 }
