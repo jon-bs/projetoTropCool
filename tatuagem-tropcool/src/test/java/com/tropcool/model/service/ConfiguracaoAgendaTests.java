@@ -61,6 +61,7 @@ public class ConfiguracaoAgendaTests extends AbstractIntegrationTests {
 		conf.setTatuador(tatuador);
 		
 		configuracaoService.cadastrarConfiguracaoAgenda(conf);
+		Assert.assertNotNull( conf.getId() );
 	}
 	
 	/* CADASTRAR CONFIGURAÇÂO_AGENDA - SEMANA INTEIRA - MUSTPASS*/

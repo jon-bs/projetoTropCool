@@ -5,10 +5,12 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.validation.ValidationException;
 
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.jdbc.Sql;
 
 import com.tropcool.model.entity.Cliente;
@@ -120,10 +122,4 @@ public class MensagemTests extends AbstractIntegrationTests {
 		Assert.assertNotNull(interacao.getId());
 		System.out.println("interacao_id: " + interacao.getId());
 	}
-	
-	
-	
-	
-	
-	
 }

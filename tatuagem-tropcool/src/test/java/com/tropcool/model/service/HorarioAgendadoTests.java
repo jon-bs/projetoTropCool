@@ -83,6 +83,7 @@ public class HorarioAgendadoTests extends AbstractIntegrationTests{
 	})
 	public void listarHorarioAgendadoMustPass() {
 		List<HorarioAgendado> l = horarioRepository.findAll();
+		Assert.assertEquals(l.size(), 5);
 	}
 
 	/**

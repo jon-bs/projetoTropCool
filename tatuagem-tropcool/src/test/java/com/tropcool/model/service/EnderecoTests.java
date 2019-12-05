@@ -140,18 +140,7 @@ public class EnderecoTests extends AbstractIntegrationTests {
 	{
 		Endereco endereco = this.enderecoRepository.findById(1002L).orElse(null);
 		endereco.setRua("Carrinha que mora logo ali");
+		enderecoService.atualizarEndereco(endereco);
 		
 	}
-	
-	@Test
-	@Sql({
-		"/dataset/truncate.sql",
-		"/dataset/enderecos.sql",
-	})
-	public void atualizarEnederecoMustFail()
-	{
-		Endereco endereco = this.enderecoRepository.findById(1002L).orElse(null);
-		endereco.setRua("");
-	}
-	
 }

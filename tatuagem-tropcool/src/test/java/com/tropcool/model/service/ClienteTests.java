@@ -73,6 +73,7 @@ public class ClienteTests extends AbstractIntegrationTests  {
 		cliente.setTelefone("14523658745");
 		
 		this.clienteService.cadastrarCliente(cliente);
+		Assert.assertNotNull( cliente.getId() );
 	}
 	
 	/** SENHA EM BRANCO **/
