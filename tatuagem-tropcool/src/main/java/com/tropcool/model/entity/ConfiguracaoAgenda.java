@@ -41,6 +41,7 @@ public class ConfiguracaoAgenda extends AbstractEntity implements Serializable{
 	@Enumerated( EnumType.ORDINAL )
 	private DiaSemanaEnum dia;
 	
+	@JsonIgnoreProperties("configuracaoAgenda")
 	@NotNull
 	@ManyToOne(
 			targetEntity = Tatuador.class,
@@ -49,7 +50,7 @@ public class ConfiguracaoAgenda extends AbstractEntity implements Serializable{
 			)
 	private Tatuador tatuador;
 	
-	@JsonIgnoreProperties("configuracao")
+	@JsonIgnoreProperties({"configuracao","cliente"})
 	@OneToMany(
 			targetEntity = HorarioAgendado.class,
 			cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},

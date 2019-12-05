@@ -11,6 +11,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -26,6 +28,7 @@ public class HorarioAgendado extends AbstractEntity implements Serializable{
 	@NotNull
     private LocalDateTime horario;
 	
+	@JsonIgnoreProperties({"horarioAgendado","tatuador"})
 	@NotNull
 	@ManyToOne(
 			targetEntity = ConfiguracaoAgenda.class, 
@@ -34,6 +37,7 @@ public class HorarioAgendado extends AbstractEntity implements Serializable{
 			)
     private ConfiguracaoAgenda configuracao;
 	
+	@JsonIgnoreProperties("horariosAgendados")
 	@NotNull
 	@ManyToOne(
 		targetEntity = Cliente.class, 

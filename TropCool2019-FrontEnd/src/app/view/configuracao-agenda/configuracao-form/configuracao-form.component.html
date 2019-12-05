@@ -18,20 +18,20 @@
 
           <div fxLayout="column">
             <div fxLayout="row" fxFlex=50>
-              <!--horaInicio  -->
+              <!--  horaInicio -->
               <mat-form-field fxFlex [floatLabel]="'always'">
                 <mat-label>Horario Termino</mat-label>
-                <input matInput id="inicio" formControlName="inicio" placeholder="HorarioInicio" layout-align="center end" required>
-                <mat-error *ngIf="configuracaoForm.get('inicio').hasError('maxLength')">
+                <input matInput id="horainicio" formControlName="horaInicio" placeholder="Horario Inicio" layout-align="center end" required>
+                <mat-error *ngIf="configuracaoForm.get('horaInicio').hasError('maxLength')">
                   Máximo 11 caracteres.
                 </mat-error>
-                <mat-error *ngIf="configuracaoForm.get('inicio').hasError('required')">
+                <mat-error *ngIf="configuracaoForm.get('horaInicio').hasError('required')">
                   *Campo Obrigatório.
                 </mat-error>
               </mat-form-field>
             </div>
+
             <div fxLayout="row" fxFlex=50>
-           
               <!--HorarioTermino-->
               <mat-form-field fxFlex [floatLabel]="'always'">
                 <mat-label>Horario Termino</mat-label>
@@ -45,11 +45,11 @@
               </mat-form-field>
             </div>
             <div fxLayout="row" fxFlex=50>
-              <!--DiaSemana
+              <!--DiaSemana-->
               <mat-form-field fxFlex [floatLabel]="'always'">
                 <mat-label>Dia da Semana</mat-label>
                 <mat-select formControlName="diaSemana" placeholder="Selecione um dia" required>
-                  <mat-option *ngFor="let dia of diaSemanaValues" [value]="diaSemana">
+                  <mat-option *ngFor="let diaSemana of diaSemanaValues" [value]="diaSemana">
                     {{ diaSemana }}
                   </mat-option>
                 </mat-select>
@@ -60,16 +60,15 @@
             </div>
 
             <div fxLayout="row" fxFlex=50>
-            -->
               <!--Tatuador-->
               <mat-form-field fxFlex [floatLabel]="'always'">
                 <mat-label>Tatuador</mat-label>
                 <input type="text" placeholder="Selecione um tatuador" matInput id="tatuador"  formControlName="tatuador"
-                  [matAutocomplete]="autoDep" required>
-                <mat-autocomplete #autoDep="matAutocomplete" [displayWith]="displayTatuador"
+                  [matAutocomplete]="autoTat" required>
+                <mat-autocomplete #autoTat="matAutocomplete" [displayWith]="displayTatuador"
                   (optionSelected)="selectTatuador($event)">
-                  <mat-option *ngFor="let tatuador of tatuadorList" [value]="item">
-                    {{tatuador.usuario.nome}}
+                  <mat-option *ngFor="let item of tatuadorList" [value]="item">
+                    {{item.nome}}
                   </mat-option>
                 </mat-autocomplete>
                 <mat-error *ngIf="configuracaoForm.get('tatuador').hasError('required')">

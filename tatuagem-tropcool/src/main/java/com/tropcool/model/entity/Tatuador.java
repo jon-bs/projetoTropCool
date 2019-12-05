@@ -49,6 +49,7 @@ public class Tatuador extends Usuario implements Serializable{
 	@Column(unique = true,nullable = false, length = 10)
 	private String alvara;
 	
+	@JsonIgnoreProperties("tatuador")
 	@OneToOne(
 			targetEntity = Endereco.class, 
 			fetch = FetchType.LAZY, 
@@ -66,7 +67,7 @@ public class Tatuador extends Usuario implements Serializable{
 		)
 	private List<Post> posts = new ArrayList<Post>();
 	
-	@JsonIgnoreProperties("tatuador")
+	@JsonIgnoreProperties({"tatuador","horarioAgendado"})
 	@OneToMany(
     		targetEntity = ConfiguracaoAgenda.class, 
     		cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},

@@ -21,6 +21,8 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -34,6 +36,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Post extends AbstractEntity implements Serializable{
 	
+	@JsonIgnoreProperties({"configuracaoAgenda","posts","endereco"})
 	@NotNull
 	@ManyToOne(
 			    targetEntity = Tatuador.class, 

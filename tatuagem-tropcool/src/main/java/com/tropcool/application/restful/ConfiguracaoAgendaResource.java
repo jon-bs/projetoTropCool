@@ -1,5 +1,6 @@
 package com.tropcool.application.restful;
 
+import java.time.LocalTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,8 @@ public class ConfiguracaoAgendaResource {
 	
 	@PostMapping("/insert")
 	public ConfiguracaoAgenda cadastrar(@RequestBody ConfiguracaoAgenda configuracaoAgenda) {
+		configuracaoAgenda.setHoraInicio(LocalTime.of(Integer.parseInt(String.valueOf(configuracaoAgenda.getHoraInicio())), 0));
+		configuracaoAgenda.setHoraTermino(LocalTime.of(Integer.parseInt(String.valueOf(configuracaoAgenda.getHoraTermino())), 0));
 		return this.configuracaoAgendaService.cadastrarConfiguracaoAgenda(configuracaoAgenda);
 	}
 	

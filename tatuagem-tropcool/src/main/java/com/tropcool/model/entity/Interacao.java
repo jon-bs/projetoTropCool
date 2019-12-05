@@ -13,6 +13,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -39,7 +40,7 @@ public class Interacao extends Mensagem implements Serializable{
 		super.setId(id);
 	}
 	*/
-	
+	@JsonIgnoreProperties({"interacao","remetente","destinatario"})
 	@NotNull
 	@OneToOne(
 			targetEntity = Mensagem.class,

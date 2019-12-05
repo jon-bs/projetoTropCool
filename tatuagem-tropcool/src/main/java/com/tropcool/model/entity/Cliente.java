@@ -37,7 +37,7 @@ public class Cliente extends Usuario implements Serializable{
     @NotBlank
 	private String telefone;
     
-    @JsonIgnoreProperties("cliente")
+    @JsonIgnoreProperties({"cliente","configuracao"})
     @OneToMany(
 	    		targetEntity = HorarioAgendado.class, 
 	    		cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},

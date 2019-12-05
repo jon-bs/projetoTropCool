@@ -64,7 +64,7 @@ public class Usuario extends AbstractEntity implements UserDetails{
 	private String email;
 	private Boolean ativo;
 	
-	@JsonIgnoreProperties("remetente")
+	@JsonIgnoreProperties({"remetente","destinatario","interacao"})
 	@OneToMany(
 			targetEntity = Mensagem.class,
 			cascade= {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, 
@@ -74,7 +74,7 @@ public class Usuario extends AbstractEntity implements UserDetails{
 			)
 	private List<Mensagem> mensagemEnviada = new ArrayList<Mensagem>();
 	
-	@JsonIgnoreProperties("destinatario")
+	@JsonIgnoreProperties({"remetente","destinatario","interacao"})
 	@OneToMany(
 			targetEntity = Mensagem.class,
 			cascade= {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, 

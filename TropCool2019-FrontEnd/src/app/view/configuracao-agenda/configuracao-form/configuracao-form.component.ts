@@ -9,6 +9,7 @@ import { DateAdapter } from '@angular/material';
 import { DiaSemana } from 'src/app/model/dia-da-semana';
 import { TatuadorService } from 'src/app/service/tatuador.service';
 import { Tatuador } from 'src/app/model/tatuador';
+import { Usuario } from 'src/app/model/usuario';
 
 @Component({
   selector: 'app-configuracao-form',
@@ -64,13 +65,13 @@ export class ConfiguracaoFormComponent implements OnInit {
 
       this.configuracaoForm = this.fb.group(
         {
-          tatuador: [null, { validators: [Validators.required], updateOn: 'blur' }],
-          inico: [null, {validators: [Validators.required, Validators.maxLength(18)], updateOn: 'blur'}],
+          tatuador: [null, { validators: [Validators.required], updateOn: 'select' }],
+          horaInicio: [null, {validators: [Validators.required, Validators.maxLength(18)], updateOn: 'blur'}],
           horaTermino: [null, {validators: [Validators.required, Validators.maxLength(18)], updateOn: 'blur'}],
-          diaSemanaValues: [null, { validators: [Validators.required] }],
+          diaSemana: [null, { validators: [Validators.required] }],
         }
       );
-      //this._adapter.setLocale('pt');
+      this._adapter.setLocale('pt');
     }
   
   
@@ -78,10 +79,11 @@ export class ConfiguracaoFormComponent implements OnInit {
     onSave() {
       if (this.configuracaoForm.valid) {
   
-        this.configuracao.tatuador = this.configuracaoForm.get("tatuador").value;
-        this.configuracao.diaSemana = this.configuracaoForm.get("diaSemanaValues").value;
-        this.configuracao.horaInicio = this.configuracaoForm.get("inicio").value;
+        var tatu : Tatuador = this.configuracaoForm.get("tatuador").value;
+        this.configuracao.tatuador = tatu;
+        this.configuracao.horaInicio = this.configuracaoForm.get("horaInicio").value;
         this.configuracao.horaTermino = this.configuracaoForm.get("horaTermino").value;
+        this.configuracao.diaSemana = this.configuracaoForm.get("diaSemana").value;
         console.log(this.configuracao);
         // cadastro || edição
         if (this.configuracao.id == null) {
@@ -118,8 +120,8 @@ export class ConfiguracaoFormComponent implements OnInit {
     loadToEdit() {
       this.configuracaoService.detalhar(this.configuracao.id).subscribe(res => {
         this.configuracaoForm.get("tatuador").setValue(res.tatuador);
-        this.configuracaoForm.get("diaSemanaValues").setValue(res.diaSemana);
-        this.configuracaoForm.get("inicio").setValue(res.horaInicio);
+        this.configuracaoForm.get("diaSemana").setValue(res.diaSemana);
+        this.configuracaoForm.get("horainicio").setValue(res.horaInicio);
         this.configuracaoForm.get("horaTermino").setValue(res.horaTermino);
         this.isOnUpdate = true;
       },
@@ -139,8 +141,12 @@ export class ConfiguracaoFormComponent implements OnInit {
   
     }
   
-    displayTatuador(tatuador?: Tatuador): string | undefined {
+    /* displayTatuador(tatuador?: Tatuador): string | undefined {
       return tatuador ? tatuador.usuario.nome : undefined;
+    } */
+
+    displayTatuador(usuario?: Usuario): string | undefined {
+      return usuario ? usuario.nome : undefined;
     }
   
     listarTatuadores(filter: string) {
@@ -152,8 +158,7 @@ export class ConfiguracaoFormComponent implements OnInit {
           this.messageService.toastError(error.error.message);
         });
     }
-  
-  
+   
     selectTatuador(event: any) {
       this.configuracaoForm.get("tatuador").setValue(event.option.value);
     }
