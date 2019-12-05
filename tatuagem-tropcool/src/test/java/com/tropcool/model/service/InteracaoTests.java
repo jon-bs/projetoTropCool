@@ -110,7 +110,8 @@ public class InteracaoTests extends AbstractIntegrationTests {
 		"/dataset/usuarios.sql", 
 		"/dataset/clientes.sql", 
 		"/dataset/tatuadores.sql",
-		"/dataset/mensagens.sql" 
+		"/dataset/mensagens.sql" ,
+		"/dataset/interacoes.sql"
 		})
 	
 	public void removerIntereacaoPorObjetoMustPass() {

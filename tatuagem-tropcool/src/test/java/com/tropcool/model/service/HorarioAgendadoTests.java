@@ -51,7 +51,6 @@ public class HorarioAgendadoTests extends AbstractIntegrationTests{
 		"/dataset/clientes.sql",
 		"/dataset/tatuadores.sql",
 		"/dataset/configuracaoAgendas.sql"
-		
 	})
 	public void cadastrarHorarioAgendadoMustPass() {
 		Cliente cliente = clienteRepository.findById(1001L).orElse(null);
@@ -79,8 +78,8 @@ public class HorarioAgendadoTests extends AbstractIntegrationTests{
 		"/dataset/usuarios.sql",
 		"/dataset/clientes.sql",
 		"/dataset/tatuadores.sql",
-		"/dataset/configuracaoAgendas.sql"
-		
+		"/dataset/configuracaoAgendas.sql",
+		"/dataset/horarioAgendado.sql"
 	})
 	public void listarHorarioAgendadoMustPass() {
 		List<HorarioAgendado> l = horarioRepository.findAll();
@@ -99,8 +98,8 @@ public class HorarioAgendadoTests extends AbstractIntegrationTests{
 		"/dataset/usuarios.sql",
 		"/dataset/clientes.sql",
 		"/dataset/tatuadores.sql",
-		"/dataset/configuracaoAgendas.sql"
-		
+		"/dataset/configuracaoAgendas.sql",
+		"/dataset/horarioAgendado.sql"
 	})
 	public void recuperarHorarioAgendadoMustPass() {
 		HorarioAgendado h = horarioRepository.findById(1001L).orElse(null);
@@ -120,8 +119,8 @@ public class HorarioAgendadoTests extends AbstractIntegrationTests{
 		"/dataset/usuarios.sql",
 		"/dataset/clientes.sql",
 		"/dataset/tatuadores.sql",
-		"/dataset/configuracaoAgendas.sql"
-		
+		"/dataset/configuracaoAgendas.sql",
+		"/dataset/horarioAgendado.sql"
 	})
 	public void removerHorarioAgendadoMustPass() {
 		HorarioAgendado h = horarioRepository.findById(1001L).orElse(null);
@@ -146,8 +145,8 @@ public class HorarioAgendadoTests extends AbstractIntegrationTests{
 		"/dataset/usuarios.sql",
 		"/dataset/clientes.sql",
 		"/dataset/tatuadores.sql",
-		"/dataset/configuracaoAgendas.sql"
-		
+		"/dataset/configuracaoAgendas.sql",
+		"/dataset/horarioAgendado.sql"
 	})
 	public void editarHorarioAgendadoConfiguracaoMustPass() {
 		HorarioAgendado h = horarioRepository.findById(1001L).orElse(null);
