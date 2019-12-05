@@ -30,8 +30,8 @@ public class ConfiguracaoAgendaResource {
 	
 	@PostMapping("/insert")
 	public ConfiguracaoAgenda cadastrar(@RequestBody ConfiguracaoAgenda configuracaoAgenda) {
-		configuracaoAgenda.setHoraInicio(LocalTime.of(Integer.parseInt(String.valueOf(configuracaoAgenda.getHoraInicio())), 0));
-		configuracaoAgenda.setHoraTermino(LocalTime.of(Integer.parseInt(String.valueOf(configuracaoAgenda.getHoraTermino())), 0));
+		//configuracaoAgenda.setHoraInicio(LocalTime.of(Integer.parseInt(String.valueOf(configuracaoAgenda.getHoraInicio())), 0));
+		//configuracaoAgenda.setHoraTermino(LocalTime.of(Integer.parseInt(String.valueOf(configuracaoAgenda.getHoraTermino())), 0));
 		return this.configuracaoAgendaService.cadastrarConfiguracaoAgenda(configuracaoAgenda);
 	}
 	
@@ -40,7 +40,7 @@ public class ConfiguracaoAgendaResource {
 		return this.configuracaoAgendaService.detalharConfiguracaoAgenda(id);
 	}
 	
-	@GetMapping("/update")
+	@PostMapping("/update")
 	public ConfiguracaoAgenda atualizar(@RequestBody ConfiguracaoAgenda configuracaoAgenda) {
 		return this.configuracaoAgendaService.atualizarConfiguracaoAgenda(configuracaoAgenda);
 	}

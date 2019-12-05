@@ -68,7 +68,7 @@ export class MenuComponent implements OnInit
         {
           label: "Listar",
           menuList: [
-            { icon: '', label: 'Configuracao-Agenda', routerlink: 'configuracoes'}
+            { icon: 'engine', label: 'Configuracao-Agenda', routerlink: 'configuracoes'}
             /*{ icon: '', label: 'Departamentos', routerlink: 'departamentos'},
             { icon: '', label: 'Funcionários', routerlink: 'funcionarios'},
             { icon: '', label: 'Produtos', routerlink: 'produtos' }*/
@@ -78,8 +78,7 @@ export class MenuComponent implements OnInit
         {
           label: "Cadastros",
           menuList: [
-            { icon: '', label: 'Configuracao-Agenda', routerlink: 'configuracoes/cadastrar'},
-            { icon: '', label: 'Compras', routerlink: 'relatorio-compras'}
+            { icon: '', label: 'Configuracao-Agenda', routerlink: 'configuracoes/cadastrar'}
           ],
           open: false
         }

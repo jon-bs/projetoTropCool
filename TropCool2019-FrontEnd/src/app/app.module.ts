@@ -15,6 +15,7 @@ import { FlexLayoutModule} from "@angular/flex-layout";
 import { AppRoutingModule } from './app-routing.module';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 
 import { AppComponent } from './app.component';
 import { CabecalhoIndexComponent } from './view/components/cabecalho-index/cabecalho-index.component';
@@ -120,7 +121,8 @@ import { MenuComponent } from './view/menu/menu.component';
     CovalentNotificationsModule,
     CovalentMenuModule,
     CovalentDataTableModule,
-    CovalentMessageModule
+    CovalentMessageModule,
+    NgxMaterialTimepickerModule
   ],
   providers: [
     ConfiguracaoAgendaService,
