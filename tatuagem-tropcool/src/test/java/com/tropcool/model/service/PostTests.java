@@ -33,26 +33,27 @@ public class PostTests extends AbstractIntegrationTests{
 	
 	/* CADASTRAR POST - MUSTPASS*/
 	
-	@Test
-	@Sql({ 
-		"/dataset/truncate.sql",
-		"/dataset/usuarios.sql",
-		"/dataset/tatuadores.sql"
-	})
-	public void cadastrarPostMustPass() throws IOException {
-		Tatuador tatuador = tatuadorRepository.findById(1001L).orElse(null);
-		
-		Post post = new Post();
-		post.setBloqueado(false);
-		byte[] b = post.openImg("C:\\Users\\Ulisses\\Downloads\\a.jpg");
-		System.out.println(b);
-		post.setImage(b);
-		post.setTatuador(tatuador);
-		postService.cadastrarPost(post);
-		
-		Assert.assertNotNull(post.getId());
-		System.out.println(post.getId());
-	}
+//	@Test
+//	@Sql({ 
+//		"/dataset/truncate.sql",
+//		"/dataset/usuarios.sql",
+//		"/dataset/tatuadores.sql"
+//	})
+//	public void cadastrarPostMustPass() throws IOException {
+//		Tatuador tatuador = tatuadorRepository.findById(1001L).orElse(null);
+//		
+//		Post post = new Post();
+//		post.setBloqueado(false);
+//		//byte[] b = post.openImg("C:\\Users\\Ulisses\\Downloads\\a.jpg");
+//		byte[] b = post.openImg("C:/Users/Ulisses/Downloads/a.jpg");
+//		System.out.println(b);
+//		post.setImage(b);
+//		post.setTatuador(tatuador);
+//		postService.cadastrarPost(post);
+//		
+//		Assert.assertNotNull(post.getId());
+//		System.out.println(post.getId());
+//	}
 	
 	/**
 	 * ====================================== DETALAHAR ===========================================

@@ -58,8 +58,5 @@ public class Post extends AbstractEntity implements Serializable{
 		//ByteImg byteI = new ByteImg(); byteI.byteImg(byte[])
 		return img;
 	}
-    
 	
-
-    
 }
