@@ -1,4 +1,3 @@
-<p>configuracao-detail works!</p>
 <div fxLayout="column">
     <div fxLayout="row" class="header-form">
         <span fxFlex>Visualizar Configuracao</span>
@@ -18,18 +17,22 @@
       
                 <div fxLayout="column">
                         <div fxLayout="column" fxFlex=50 class="field-detail">
-                            <span>ID:</span>
-                            <span class="label-detail-value"></span>
+                            <span>ID:</span><span class="label-detail-value">{{configuracao.id}}</span>
                         </div>
 
                         <div fxLayout="column" fxFlex=50 class="field-detail">
-                            <span>Nome:</span>
-                            <span class="label-detail-value"></span>
+                            <span>Dia de Funcionamento:</span>
+                            <span class="label-detail-value">{{configuracao.diaSemana}}</span>
                         </div>
 
                         <div fxLayout="column" fxFlex=50 class="field-detail">
-                                <span>Descrição:</span>
-                                <span class="label-detail-value"></span>
+                            <span>Horario de Funcionamento:</span>
+                            <span class="label-detail-value">{{configuracao.horaInicio}} - {{configuracao.horaTermino}}</span>
+                        </div>
+
+                        <div fxLayout="column" fxFlex=50 class="field-detail">
+                                <span>Tatuador:</span>
+                                <span class="label-detail-value">{{configuracao.tatuador.nome}}</span>
                         </div>
                 </div>
     

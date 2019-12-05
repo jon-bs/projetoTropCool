@@ -50,7 +50,9 @@ public class Tatuador extends Usuario implements Serializable{
 	private String alvara;
 	
 	@OneToOne(
-			targetEntity = Endereco.class, fetch = FetchType.LAZY, optional = true
+			targetEntity = Endereco.class, 
+			fetch = FetchType.LAZY, 
+			optional = true
 		)
 	private Endereco endereco;
 	

@@ -12,9 +12,10 @@ import { ParserToDateService } from 'src/app/service/parser-to-date.service';
 })
 export class ConfiguracaoDetailComponent implements OnInit {
 
-  public configuracao : ConfiguracaoAgenda;
+  public configuracao : ConfiguracaoAgenda; // objeto para encapsulamento dos dados
+
   constructor(
-    private configuracaoService : ConfiguracaoAgendaService,
+    private configuracaoService : ConfiguracaoAgendaService, // service para manipulação dos dados
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private messageService: MessagesService,
@@ -22,8 +23,8 @@ export class ConfiguracaoDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.configuracao = new ConfiguracaoAgenda(null, null, null, null, null, null);
-    this.configuracao.id = this.activatedRoute.snapshot.params['id'];
+    this.configuracao = new ConfiguracaoAgenda(null, null, null, null, null, null); // instancia para uso
+    this.configuracao.id = this.activatedRoute.snapshot.params['id']; //recupera o id da rota url
     if (this.configuracao.id) {
       this.loadDados();
     }
@@ -32,6 +33,7 @@ export class ConfiguracaoDetailComponent implements OnInit {
   loadDados(){
     this.configuracaoService.detalhar(this.configuracao.id).subscribe(res => {
       this.configuracao = new ConfiguracaoAgenda(res.id, res.horaInicio, res.horaTermino, res.tatuador, [], res.diaSemana);
+      console.log(this.configuracao)
     },
       (error: any) => {
       this.messageService.toastError(error.error.message);

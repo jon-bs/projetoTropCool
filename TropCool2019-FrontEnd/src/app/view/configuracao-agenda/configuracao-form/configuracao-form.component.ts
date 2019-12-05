@@ -17,15 +17,15 @@ import { Tatuador } from 'src/app/model/tatuador';
 })
 export class ConfiguracaoFormComponent implements OnInit {
 
-  public configuracaoForm : FormGroup;
+  public configuracaoForm : FormGroup; // formulario
 
-  public configuracao : ConfiguracaoAgenda;
+  public configuracao : ConfiguracaoAgenda;  // objeto configuracao-agenda
 
-  public diaSemanaValues : String[] = DiaSemanaValues;
+  public diaSemanaValues : String[] = DiaSemanaValues; // dias da semana enum
   
-  public tatuadorList : Array<Tatuador> = [];
+  public tatuadorList : Array<Tatuador> = []; // lista de tatuadores
 
-  public isOnUpdate : boolean = false;
+  public isOnUpdate : boolean = false; // para verificação de cadastro/update
 
   /**
    * Construtor da classe
@@ -37,10 +37,10 @@ export class ConfiguracaoFormComponent implements OnInit {
 
 
   constructor(
-    private fb: FormBuilder, 
+    private fb: FormBuilder, // construtor do formulario
     private activatedRoute: ActivatedRoute,
     private router: Router, 
-    private configuracaoService: ConfiguracaoAgendaService,
+    private configuracaoService: ConfiguracaoAgendaService, // service para manipulação dos dados
     private messageService: MessagesService,
     private _adapter: DateAdapter<any>,
     private tatuadorService: TatuadorService
@@ -64,19 +64,17 @@ export class ConfiguracaoFormComponent implements OnInit {
 
       this.configuracaoForm = this.fb.group(
         {
-          tatuador : [null, { validators: [Validators.required], updateOn: 'blur' }],
-          horaInico: [null, {validators: [Validators.required, Validators.maxLength(5)], updateOn: 'blur'}],
-          horaTermino: [null, {validators: [Validators.required, Validators.maxLength(5)], updateOn: 'blur'}],
-          diaSemanaValues: [null, [null, { validators: [Validators.required], updateOn: 'select' }]],
+          tatuador: [null, { validators: [Validators.required], updateOn: 'blur' }],
+          horaInico: [null, {validators: [Validators.required, Validators.maxLength(18)], updateOn: 'blur'}],
+          horaTermino: [null, {validators: [Validators.required, Validators.maxLength(18)], updateOn: 'blur'}],
+          diaSemanaValues: [null, { validators: [Validators.required] }],
         }
       );
-      this._adapter.setLocale('pt');
+      //this._adapter.setLocale('pt');
     }
   
   
-    /**
-     * Método para salvar o configuracao
-     */
+    // evento para salvvar
     onSave() {
       if (this.configuracaoForm.valid) {
   
@@ -85,13 +83,11 @@ export class ConfiguracaoFormComponent implements OnInit {
         this.configuracao.horaInicio = this.configuracaoForm.get("horaInicio").value;
         this.configuracao.horaTermino = this.configuracaoForm.get("horaTermino").value;
         console.log(this.configuracao);
-        /**
-         * Verifica se é cadastro ou edição
-         */
+        // cadastro || edição
         if (this.configuracao.id == null) {
           this.configuracaoService.cadastrar(this.configuracao).subscribe(res => {
             this.configuracao = res;
-            this.messageService.toastSuccess('Configuraçao de Agendamento cadastrada com sucesso.');
+            this.messageService.toastSuccess('Configuraçao de Agendamento cadastrado com sucesso.');
             this.onBack();
           },
             (error: any) => {
@@ -102,7 +98,7 @@ export class ConfiguracaoFormComponent implements OnInit {
           this.configuracaoService.editar(this.configuracao).subscribe(res => {
             this.configuracao = res;
             this.isOnUpdate = true;
-            this.messageService.toastSuccess('Configuração de Agendamento atualizada com sucesso.');
+            this.messageService.toastSuccess('Configuração de Agendamento atualizado com sucesso.');
             this.onBack();
           },
           (error: any) => {
@@ -116,11 +112,9 @@ export class ConfiguracaoFormComponent implements OnInit {
       }
     }
   
-  
-  
-    /**
-     * Método para popular o formulário com os dados do funcionário em edição
-     */
+    // carrega os dados no formulario
+
+
     loadToEdit() {
       this.configuracaoService.detalhar(this.configuracao.id).subscribe(res => {
         this.configuracaoForm.get("tatuador").setValue(res.tatuador);
@@ -135,9 +129,6 @@ export class ConfiguracaoFormComponent implements OnInit {
   
     }
   
-    /**
-     * Método para voltar a pagina de list de configuracaos
-     */
     onBack() {
       console.log(this.configuracaoForm.get("configuracao").value);
       if (!this.isOnUpdate) {
@@ -148,10 +139,6 @@ export class ConfiguracaoFormComponent implements OnInit {
   
     }
   
-  
-    /**
-     * Display de departamento
-     */
     displayTatuador(tatuador?: Tatuador): string | undefined {
       return tatuador ? tatuador.usuario.nome : undefined;
     }
@@ -159,6 +146,7 @@ export class ConfiguracaoFormComponent implements OnInit {
     listarTatuadores(filter: string) {
       this.tatuadorService.listar().subscribe(dados => {
         this.tatuadorList = dados;
+        console.log(this.tatuadorList)
       },
         (error: any) => {
           this.messageService.toastError(error.error.message);
@@ -166,8 +154,8 @@ export class ConfiguracaoFormComponent implements OnInit {
     }
   
   
-    selectDepartamento(event: any) {
-      this.configuracaoForm.get("departamento").setValue(event.option.value);
+    selectTatuador(event: any) {
+      this.configuracaoForm.get("tatuador").setValue(event.option.value);
     }
 
 }
