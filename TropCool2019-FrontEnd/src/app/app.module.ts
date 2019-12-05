@@ -66,7 +66,7 @@ import { MenuComponent } from './view/menu/menu.component';
     CabecalhoTabelaAgendarComponent,
     TabelaAgendarComponent,
     MenuComponent,
-    // CRIADOS POR GABRIEL 
+    // CRIADOS POR GABRIEL
     ConfiguracaoSearchComponent,
     ConfiguracaoDetailComponent,
     ConfiguracaoListComponent,
@@ -81,6 +81,7 @@ import { MenuComponent } from './view/menu/menu.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+
     /** Material Modules */
     MatButtonModule,
     MatListModule,
@@ -105,6 +106,7 @@ import { MenuComponent } from './view/menu/menu.component';
     MatNativeDateModule,
     MatSliderModule,
     MatAutocompleteModule,
+
     /** Covalent Modules */
     CovalentCommonModule,
     CovalentLayoutModule,

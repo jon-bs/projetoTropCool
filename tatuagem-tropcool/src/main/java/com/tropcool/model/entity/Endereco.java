@@ -33,7 +33,7 @@ public class Endereco extends AbstractEntity implements Serializable{
 	@OneToOne(
 			targetEntity = Tatuador.class, 
     		cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},
-			fetch = FetchType.EAGER, 
+			fetch = FetchType.LAZY, 
 			mappedBy = "endereco", 
 			orphanRemoval = true
 			)

@@ -53,7 +53,7 @@ public class ConfiguracaoAgenda extends AbstractEntity implements Serializable{
 	@OneToMany(
 			targetEntity = HorarioAgendado.class,
 			cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},
-			fetch = FetchType.EAGER, 
+			fetch = FetchType.LAZY, 
 			mappedBy = "configuracao", 
 			orphanRemoval = true
 			)
