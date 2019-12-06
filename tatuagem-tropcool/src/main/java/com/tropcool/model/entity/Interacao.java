@@ -35,11 +35,6 @@ public class Interacao extends Mensagem implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	/*
-	public Interacao(Long id) {
-		super.setId(id);
-	}
-	*/
 	@JsonIgnoreProperties({"interacao","remetente","destinatario"})
 	@NotNull
 	@OneToOne(
@@ -47,7 +42,5 @@ public class Interacao extends Mensagem implements Serializable{
 			fetch = FetchType.LAZY, 
 			optional = true
 			)
-	/*@JoinColumn(
-	    	name="mensagem_resp", unique=false, nullable=false, updatable=false)*/
 	private Mensagem mensagem;
 }

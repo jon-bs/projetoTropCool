@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -37,18 +38,22 @@ public class Tatuador extends Usuario implements Serializable{
 		super.setId(id);
 	}
 	
+	@NotNull
 	@NotBlank
 	@Column(unique = true, length = 11)
 	private String telefone1;
 	
+	@NotNull
 	@NotBlank
 	@Column(unique = true, length = 11)
 	private String telefone2;
 	
+	@NotNull
 	@NotBlank
 	@Column(unique = true,nullable = false, length = 10)
 	private String alvara;
 	
+	@NotNull
 	@JsonIgnoreProperties("tatuador")
 	@OneToOne(
 			targetEntity = Endereco.class, 

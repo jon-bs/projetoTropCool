@@ -14,6 +14,7 @@ import javax.persistence.FetchType;
 import javax.persistence.EnumType;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.persistence.Transient;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -44,22 +45,27 @@ public class Usuario extends AbstractEntity implements UserDetails{
 	
 	private static final long serialVersionUID = 1L;
 	
+	@NotNull
 	@NotBlank
 	@Column(unique = true, nullable = false, length = 20)
 	private String login;
 	
 	//@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+	@NotNull
 	@NotBlank
 	@Column(unique = false, nullable = false)
 	private String senha;
 	
+	@NotNull
 	@NotBlank // Não em branco
 	private String nome;
 	
+	@NotNull
 	@NotBlank
     @Column(unique = true, nullable = false, length = 11)
 	private String cpf;
     
+	@NotNull
 	@NotBlank
 	private String email;
 	private Boolean ativo;
@@ -84,6 +90,7 @@ public class Usuario extends AbstractEntity implements UserDetails{
 			)
 	private List<Mensagem> mensagemRecebida = new ArrayList<Mensagem>();
 	
+	@NotNull
 	@Enumerated( EnumType.ORDINAL )
 	private RoleEnum perfil;
 	/**

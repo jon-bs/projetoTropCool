@@ -51,11 +51,13 @@ public class Post extends AbstractEntity implements Serializable{
 	@Column(name = "image", nullable = true)
 	private byte[] image;
 	 
+	/*  Abre uma imagem e converte em um array de bytes  */
 	public byte[] openImg(String path) throws IOException {
 		byte[] bytes = Files.readAllBytes(Paths.get(path));
 		return bytes;
 	}
 	
+	/*  Monta uma imagem a partir de uma array de bytes  */
 	public Image writeImg(byte[] imagem) {
 		Image img = new ImageIcon(imagem).getImage();
 		//ByteImg byteI = new ByteImg(); byteI.byteImg(byte[])

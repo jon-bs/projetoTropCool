@@ -52,9 +52,11 @@ public class Mensagem implements Serializable{
 	@NotNull
 	private LocalDateTime data;
 	
+	@NotNull
 	private Boolean lido;
 	
 	@NotBlank
+	@NotNull
 	private String conteudo;
 	
 	@JsonIgnoreProperties("mensagem")

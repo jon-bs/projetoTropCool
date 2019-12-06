@@ -65,20 +65,26 @@ export class MenuComponent implements OnInit
   public createMenu()
   {
     this.menuGroups = [
+      /*
         {
           label: "Listar",
           menuList: [
-            { icon: 'engine', label: 'Configuracao-Agenda', routerlink: 'configuracoes'}
-            /*{ icon: '', label: 'Departamentos', routerlink: 'departamentos'},
-            { icon: '', label: 'Funcionários', routerlink: 'funcionarios'},
-            { icon: '', label: 'Produtos', routerlink: 'produtos' }*/
+            { icon: 'event', label: 'Configuracao-Agenda', routerlink: 'configuracoes'}
           ],
           open: false
         },
         {
           label: "Cadastros",
           menuList: [
-            { icon: '', label: 'Configuracao-Agenda', routerlink: 'configuracoes/cadastrar'}
+            { icon: 'event', label: 'Configuracao-Agenda', routerlink: 'configuracoes/cadastrar'}
+          ],
+          open: false
+        } */
+        {
+          label: "Configuração Agenda",
+          menuList: [
+            { icon: 'event', label: 'Listar', routerlink: 'configuracoes'},
+            { icon: 'event', label: 'Cadastrar', routerlink: 'configuracoes/cadastrar'}
           ],
           open: false
         }

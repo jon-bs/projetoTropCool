@@ -38,6 +38,7 @@ public class ConfiguracaoAgenda extends AbstractEntity implements Serializable{
 	@NotNull
 	private LocalTime horaTermino;
 	
+	@NotNull
 	@Enumerated( EnumType.ORDINAL )
 	private DiaSemanaEnum dia;
 	

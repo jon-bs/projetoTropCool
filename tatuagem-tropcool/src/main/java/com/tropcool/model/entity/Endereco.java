@@ -9,6 +9,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -28,6 +29,7 @@ public class Endereco extends AbstractEntity implements Serializable{
 	/**
 	 * 
 	 */
+	@NotNull
 	@JsonIgnoreProperties("endereco")
 	private static final long serialVersionUID = 1L;
 	@OneToOne(
@@ -39,18 +41,23 @@ public class Endereco extends AbstractEntity implements Serializable{
 			)
 	private Tatuador tatuador;
 	
+	@NotNull
 	@NotBlank
 	private String cidade;
     
+	@NotNull
 	@NotBlank
 	private String estado;
     
+	@NotNull
 	@NotBlank
 	private String numero;
     
+	@NotNull
 	@NotBlank
 	private String rua;
 	
+	@NotNull
 	@NotBlank
 	private String cep;
     

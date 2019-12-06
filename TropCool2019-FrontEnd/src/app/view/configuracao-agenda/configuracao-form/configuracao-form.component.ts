@@ -132,7 +132,6 @@ export class ConfiguracaoFormComponent implements OnInit {
     }
 
     onBack() {
-      console.log(this.configuracaoForm.get("configuracao").value);
       if (!this.isOnUpdate) {
         this.router.navigate(['../'], { relativeTo: this.activatedRoute });
       } else {

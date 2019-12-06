@@ -35,10 +35,12 @@ public class ClienteTests extends AbstractIntegrationTests  {
 	 * ====================================== CADASTRAR ===========================================
 	 */
 	
+	/*  CADASTRAR CLIENTE - MUSTPASS  */
+	
 	@Test
 	@Sql({ 
 		"/dataset/truncate.sql",
-			"/dataset/usuarios.sql"
+		"/dataset/usuarios.sql"
 									})
 	public void cadastrarClienteMustPass() {
 		Cliente cliente = new Cliente();
@@ -272,24 +274,10 @@ public class ClienteTests extends AbstractIntegrationTests  {
 		"/dataset/clientes.sql"
 										})
 	public void detalharClienteMustPass() {
-		Cliente cliente = this.clienteRepository.findById(1002L).orElse(null);
+		Cliente cliente = this.clienteService.detalharCliente(1002L);
 		Assert.assertNotNull(cliente);
 		Assert.assertTrue(cliente.getId() == 1002L);
 	}
-	
-	/*  DETALHAR CLIENTE - INEXISTENTE - MUSTPASS */
-	
-	@Test
-	@Sql({
-		"/dataset/truncate.sql",  
-		"/dataset/usuarios.sql", 
-		"/dataset/clientes.sql"							
-	})
-	public void detalharClienteInexistenteMustPass() {
-		Cliente cliente = this.clienteRepository.findById(1010L).orElse(null);
-		Assert.assertNull("Cliente não encontrado", cliente);
-	}
-	
 	
 	/**
 	 * ====================================== Atualizar ===========================================
@@ -298,12 +286,12 @@ public class ClienteTests extends AbstractIntegrationTests  {
 	@Test
 	@Sql({ 
 		"/dataset/truncate.sql",  
-			"/dataset/usuarios.sql",
-				"/dataset/clientes.sql", 
+		"/dataset/usuarios.sql",
+		"/dataset/clientes.sql", 
 										})
 	public void atualizarClienteMustPass() 
 	{
-		Cliente cliente = this.clienteRepository.findById(1001L).orElse(null);
+		Cliente cliente = this.clienteService.detalharCliente(1001L);
 		cliente.setLogin("cliente0001");
 		
 		clienteService.atualizarCliente(cliente);
@@ -318,9 +306,23 @@ public class ClienteTests extends AbstractIntegrationTests  {
 										})
 	public void atualizarClienteMustFailLoginEmUso() 
 	{
-		Cliente cliente = this.clienteRepository.findById(1001L).orElse(null);
+		Cliente cliente = this.clienteService.detalharCliente(1001L);
 		cliente.setLogin("adm_gabriel");
-		
+		clienteService.atualizarCliente(cliente);
+	}
+	
+	/*  ATUALIZAR CLIENTE - MUDAR SENHA SEM TOKEN - MUSTFAIL  */
+	
+	@Test(expected = DataIntegrityViolationException.class)
+	@Sql({ 
+		"/dataset/truncate.sql",  
+		"/dataset/usuarios.sql",
+		"/dataset/clientes.sql", 
+										})
+	public void atualizarClienteMudarSenhaSemTokenMustFail() 
+	{
+		Cliente cliente = this.clienteService.detalharCliente(1001L);
+		cliente.setSenha("12345");
 		clienteService.atualizarCliente(cliente);
 	}
 	
@@ -331,16 +333,13 @@ public class ClienteTests extends AbstractIntegrationTests  {
 	@Test
 	@Sql({
 		"/dataset/truncate.sql",
-			"/dataset/usuarios.sql",
-				"/dataset/clientes.sql"
+		"/dataset/usuarios.sql",
+		"/dataset/clientes.sql"
 										})
 	public void removerClienteMustPass() {
 		
 		this.clienteService.removerCliente(1001L);
-		
-		Cliente cliente = this.clienteRepository.findById(1001L).orElse(null);
-		
-		Assert.assertNull(cliente);
+		Cliente cliente = this.clienteService.detalharCliente(1001L);
 	}
 	
 }

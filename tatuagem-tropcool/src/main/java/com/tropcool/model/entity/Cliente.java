@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -33,6 +34,7 @@ public class Cliente extends Usuario implements Serializable{
 		super.setId(id);
 	}
 	
+	@NotNull
     @Column(length = 11)
     @NotBlank
 	private String telefone;

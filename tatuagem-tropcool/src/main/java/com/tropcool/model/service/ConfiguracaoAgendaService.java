@@ -23,7 +23,19 @@ public class ConfiguracaoAgendaService {
 	 * @return
 	 */
 	public ConfiguracaoAgenda cadastrarConfiguracaoAgenda(ConfiguracaoAgenda configuracaoAgenda) {
-		return this.configuracaoAgendaRepository.save(configuracaoAgenda);
+		int i = configuracaoAgenda.getHoraInicio().compareTo(configuracaoAgenda.getHoraTermino());
+		String error;
+		if(i == 1) { 
+			error = "ERRO AO REALIZAR REGISTRO: O horario de inicio do expediente configurado é inferior ao expediente de encerramento";
+		}
+		else if(i == 2) {
+			error = "ERRO AO REALIZAR REGISTRO: O horario de inicio do expediente não difere do horário de término";
+		}
+		else if(i == -1) {
+			return this.configuracaoAgendaRepository.save(configuracaoAgenda);
+		}
+		else {}
+		return configuracaoAgenda;
 	}
 	
 	/**
