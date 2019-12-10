@@ -70,7 +70,7 @@ public class PostTests extends AbstractIntegrationTests{
 		"/dataset/posts.sql"
 	})
 	public void detalahrPostMustPass(){
-		Post post = postRepository.findById(1001L).orElse(null);
+		Post post = postService.detalharPost(1001L);
 		post.writeImg(post.getImage());
 		Assert.assertNotNull(post);
 	}
@@ -90,7 +90,7 @@ public class PostTests extends AbstractIntegrationTests{
 		"/dataset/posts.sql"
 	})
 	public void listarPostMustPass(){
-		List<Post> posts = postRepository.findAll();
+		List<Post> posts = postService.listarPosts();
 		Assert.assertEquals(3, posts.size());
 	}
 	
@@ -109,12 +109,12 @@ public class PostTests extends AbstractIntegrationTests{
 		"/dataset/posts.sql"
 	})
 	public void bloquearPostMustPass(){
-		Post post = postRepository.findById(1001L).orElse(null);
+		Post post = postService.detalharPost(1001L);
 		Assert.assertNotNull(post);
 		Assert.assertTrue(post.getBloqueado() == false);
 		
 		post.setBloqueado(true);
-		postRepository.save(post);
+		postService.atualizarPost(post);
 	}
 	
 	/* DESBLOQUEAR POST - MUSTPASS*/
@@ -127,12 +127,12 @@ public class PostTests extends AbstractIntegrationTests{
 		"/dataset/posts.sql"
 	})
 	public void desbloquearPostMustPass(){
-		Post post = postRepository.findById(1002L).orElse(null);
+		Post post = postService.detalharPost(1002L);
 		Assert.assertNotNull(post);
 		Assert.assertTrue(post.getBloqueado() == true);
 		
 		post.setBloqueado(false);
-		postRepository.save(post);
+		postService.atualizarPost(post);
 	}
 	
 	/* ATUALIZAR POST - REMOVER TATUADOR - MUSTFAIL*/
@@ -145,11 +145,11 @@ public class PostTests extends AbstractIntegrationTests{
 		"/dataset/posts.sql"
 	})
 	public void removerTatuadorPostMustFail(){
-		Post post = postRepository.findById(1001L).orElse(null);
+		Post post = postService.detalharPost(1001L);
 		Assert.assertNotNull(post);
 		Assert.assertNotNull(post.getTatuador());
 		post.setTatuador(null);
-		//postRepository.save(post);
+		postService.atualizarPost(post);
 	}
 	/**
 	 * ====================================== REMOVER ===========================================
@@ -166,8 +166,8 @@ public class PostTests extends AbstractIntegrationTests{
 		"/dataset/posts.sql"
 	})
 	public void removerPostMustPass(){
-		postRepository.deleteById(1001L);
-		Post post = postRepository.findById(1001L).orElse(null);
+		postService.removerPost(1001L);
+		Post post = postService.detalharPost(1001L);
 		Assert.assertNull(post);
 	}
 }

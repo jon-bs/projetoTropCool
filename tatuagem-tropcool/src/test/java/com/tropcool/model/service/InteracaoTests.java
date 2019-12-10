@@ -35,8 +35,7 @@ public class InteracaoTests extends AbstractIntegrationTests {
 	private MensagemRepository mensagemRepository;
 
 	/**
-	 * ====================================== CADASTRAR
-	 * ===========================================
+	 * ====================================== CADASTRAR ===========================================
 	 */
 
 	/* CADASTRAR INTERACAO - MUSTPASS */
@@ -80,7 +79,7 @@ public class InteracaoTests extends AbstractIntegrationTests {
 	})
 	public void listarInteracaoMustPass() {
 
-		List<Interacao> list = interacaoRepository.findAll();
+		List<Interacao> list = interacaoService.listarInteracoes();
 		System.out.println(list.size());
 		Assert.assertTrue(list.size() > 1);
 	}
@@ -96,33 +95,12 @@ public class InteracaoTests extends AbstractIntegrationTests {
 	@Sql({ "/dataset/truncate.sql", "/dataset/usuarios.sql", "/dataset/clientes.sql", "/dataset/tatuadores.sql",
 			"/dataset/mensagens.sql", "/dataset/interacoes.sql" })
 	public void removerInteracaoPorIdMustPass() {
-		interacaoRepository.deleteById(1001L);
-		Interacao i = interacaoRepository.findById(1001L).orElse(null);
+		interacaoService.removerInteracao(1001L);
+		Interacao i = interacaoService.detalharInteracao(1001L);
 		Assert.assertNull(i);
 
 	}
 
-	/* REMOVER INTERACAO - POR OBJETO - MUSTPASS */
-
-	@Test
-	@Sql({ 
-		"/dataset/truncate.sql", 
-		"/dataset/usuarios.sql", 
-		"/dataset/clientes.sql", 
-		"/dataset/tatuadores.sql",
-		"/dataset/mensagens.sql" ,
-		"/dataset/interacoes.sql"
-		})
-	
-	public void removerIntereacaoPorObjetoMustPass() {
-		Interacao a = interacaoRepository.findById(1001L).orElse(null);
-		Assert.assertNotNull(a);
-		interacaoRepository.delete(a);
-		a = interacaoRepository.findById(1001L).orElse(null);
-		Assert.assertNull(a);
-		
-
-	}
 	
 	/**
 	 * ====================================== RECUPERAR ===========================================
@@ -140,7 +118,7 @@ public class InteracaoTests extends AbstractIntegrationTests {
 		"/dataset/interacoes.sql"
 	})
 	public void recuperarInteracaoMustPass() {
-		Interacao i = interacaoRepository.findById(1001L).orElse(null);
+		Interacao i = interacaoService.detalharInteracao(1001L);
 		Assert.assertNotNull(i);
 	}
 	
@@ -166,7 +144,7 @@ public class InteracaoTests extends AbstractIntegrationTests {
 		i.setData(LocalDateTime.now());
 		i.setConteudo("boa tarde, tudo bem?");
 		
-		interacaoRepository.save(i);
+		interacaoService.atualizarInteracao(i);
 		
 		i = interacaoRepository.findById(1001L).orElse(null);
 		Assert.assertNotNull(i);

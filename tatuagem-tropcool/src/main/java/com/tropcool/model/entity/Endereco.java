@@ -32,6 +32,7 @@ public class Endereco extends AbstractEntity implements Serializable{
 	@NotNull
 	@JsonIgnoreProperties("endereco")
 	private static final long serialVersionUID = 1L;
+	
 	@OneToOne(
 			targetEntity = Tatuador.class, 
     		cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},

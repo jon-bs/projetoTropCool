@@ -103,7 +103,7 @@ public class HorarioAgendadoTests extends AbstractIntegrationTests{
 		"/dataset/horarioAgendado.sql"
 	})
 	public void recuperarHorarioAgendadoMustPass() {
-		HorarioAgendado h = horarioRepository.findById(1001L).orElse(null);
+		HorarioAgendado h = horarioService.detalharHorarioAgendado(1001L);
 		Assert.assertNotNull(h);
 	}
 	
@@ -124,12 +124,12 @@ public class HorarioAgendadoTests extends AbstractIntegrationTests{
 		"/dataset/horarioAgendado.sql"
 	})
 	public void removerHorarioAgendadoMustPass() {
-		HorarioAgendado h = horarioRepository.findById(1001L).orElse(null);
+		HorarioAgendado h = horarioService.detalharHorarioAgendado(1001L);
 		Assert.assertNotNull(h);
 		
-		horarioRepository.deleteById(1001L);
+		horarioService.detalharHorarioAgendado(1001L);
 		
-		h = horarioRepository.findById(1001L).orElse(null);
+		h = horarioService.detalharHorarioAgendado(1001L);
 		Assert.assertNull(h);
 	}
 	
@@ -150,15 +150,15 @@ public class HorarioAgendadoTests extends AbstractIntegrationTests{
 		"/dataset/horarioAgendado.sql"
 	})
 	public void editarHorarioAgendadoConfiguracaoMustPass() {
-		HorarioAgendado h = horarioRepository.findById(1001L).orElse(null);
+		HorarioAgendado h = horarioService.detalharHorarioAgendado(1001L);
 		Assert.assertNotNull(h);
 		
 		h.setConfiguracao(configuracaoRepository.findById(1002L).orElse(null));
 		Assert.assertNotNull(h.getConfiguracao());
 		
-		horarioRepository.save(h);
+		horarioService.agendarHorario(h);
 		
-		h = horarioRepository.findById(1001L).orElse(null);
+		h = horarioService.detalharHorarioAgendado(1001L);
 	}
 
 }
