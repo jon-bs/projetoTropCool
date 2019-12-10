@@ -66,9 +66,9 @@ export class ConfiguracaoFormComponent implements OnInit {
       this.configuracaoForm = this.fb.group(
         {
           tatuador: [null, { validators: [Validators.required], updateOn: 'select' }],
-          horaInicio: [null/*{validators: [Validators.required], updateOn: 'blur'}*/],
-          horaTermino: [null/* {validators: [Validators.required], updateOn: 'blur'}*/],
-          diaSemana: [null, { validators: [Validators.required] }],
+          horaInicio: [null/*,{validators: [Validators.required]}*/],
+          horaTermino: [null/*, {validators: [Validators.required]}*/],
+          diaSemana: [null, { validators: [Validators.required] }]
         }
       );
       this._adapter.setLocale('pt');
@@ -79,12 +79,11 @@ export class ConfiguracaoFormComponent implements OnInit {
     onSave() {
       if (this.configuracaoForm.valid) {
 
-        var tatu : Tatuador = this.configuracaoForm.get("tatuador").value;
-        this.configuracao.tatuador = tatu;
+        var tatuador : Tatuador = this.configuracaoForm.get("tatuador").value;
+        this.configuracao.tatuador = tatuador;
         this.configuracao.horaInicio = this.configuracaoForm.get("horaInicio").value;
         this.configuracao.horaTermino = this.configuracaoForm.get("horaTermino").value;
-        this.configuracao.diaSemana = this.configuracaoForm.get("diaSemana").value;
-        console.log(this.configuracao);
+        this.configuracao.dia = this.configuracaoForm.get("diaSemana").value;
         // cadastro || edição
         if (this.configuracao.id == null) {
           this.configuracaoService.cadastrar(this.configuracao).subscribe(res => {
@@ -120,7 +119,7 @@ export class ConfiguracaoFormComponent implements OnInit {
     loadToEdit() {
       this.configuracaoService.detalhar(this.configuracao.id).subscribe(res => {
         this.configuracaoForm.get("tatuador").setValue(res.tatuador);
-        this.configuracaoForm.get("diaSemana").setValue(res.diaSemana);
+        this.configuracaoForm.get("diaSemana").setValue(res.dia);
         this.configuracaoForm.get("horaInicio").setValue(res.horaInicio);
         this.configuracaoForm.get("horaTermino").setValue(res.horaTermino);
         this.isOnUpdate = true;

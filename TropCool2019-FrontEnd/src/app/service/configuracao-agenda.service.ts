@@ -18,6 +18,7 @@ export class ConfiguracaoAgendaService {
   }
 
   cadastrar(configuracao_agenda: ConfiguracaoAgenda){
+    console.log(configuracao_agenda)
     return this.http.post<ConfiguracaoAgenda>('http://localhost:4200/api/api/configuracao_agenda/insert/', configuracao_agenda);
   }
 

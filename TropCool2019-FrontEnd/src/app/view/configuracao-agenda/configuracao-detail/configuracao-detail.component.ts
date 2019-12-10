@@ -32,7 +32,7 @@ export class ConfiguracaoDetailComponent implements OnInit {
 
   loadDados(){
     this.configuracaoService.detalhar(this.configuracao.id).subscribe(res => {
-      this.configuracao = new ConfiguracaoAgenda(res.id, res.horaInicio, res.horaTermino, res.tatuador, [], res.diaSemana);
+      this.configuracao = new ConfiguracaoAgenda(res.id, res.horaInicio, res.horaTermino, res.tatuador, [], res.dia);
       console.log(this.configuracao)
     },
       (error: any) => {

@@ -19,7 +19,12 @@ import com.tropcool.model.service.ConfiguracaoAgendaService;
 @RestController
 @RequestMapping("/api/configuracao_agenda")
 public class ConfiguracaoAgendaResource {
-
+	private String mensagem;
+	private LocalTime horaI;
+	private LocalTime horaT;
+	int horaIint;
+	int horaTint;
+	
 	@Autowired
 	private ConfiguracaoAgendaService configuracaoAgendaService;
 	
@@ -29,10 +34,29 @@ public class ConfiguracaoAgendaResource {
 	}
 	
 	@PostMapping("/insert")
-	public ConfiguracaoAgenda cadastrar(@RequestBody ConfiguracaoAgenda configuracaoAgenda) {
-		//configuracaoAgenda.setHoraInicio(LocalTime.of(Integer.parseInt(String.valueOf(configuracaoAgenda.getHoraInicio())), 0));
-		//configuracaoAgenda.setHoraTermino(LocalTime.of(Integer.parseInt(String.valueOf(configuracaoAgenda.getHoraTermino())), 0));
-		return this.configuracaoAgendaService.cadastrarConfiguracaoAgenda(configuracaoAgenda);
+	public ConfiguracaoAgenda cadastrar(@RequestBody ConfiguracaoAgenda configuracaoAgenda) throws Exception {
+		System.out.println("\nDia da semana: " + configuracaoAgenda.getDia() + "\n");
+		horaI = configuracaoAgenda.getHoraInicio();
+		horaT = configuracaoAgenda.getHoraTermino();
+		horaIint = configuracaoAgenda.getHoraInicio().getHour();
+		horaTint = configuracaoAgenda.getHoraTermino().getHour();
+		if(horaIint > horaTint) {
+			mensagem = "ERRO: Horário de ínicio não pode superar o horário de encerramento do espediente.";
+			throw new Exception(mensagem);
+		}else if( horaI == horaT) {
+			mensagem = "ERRO: Deve haver pelo menos uma hora de diferença entre o início e encerramento do expediente.";
+			throw new Exception(mensagem);
+		}else if(horaIint < horaTint){
+			try {
+				return this.configuracaoAgendaService.cadastrarConfiguracaoAgenda(configuracaoAgenda);
+			}catch(Exception e) {
+				throw new Exception(e);
+			}
+		}else{
+			mensagem = "ERRO: Não foi possível finalizar o registro, causa desconhecida.";
+			throw new Exception(mensagem);
+		}
+		
 	}
 	
 	@GetMapping("/find")
@@ -41,8 +65,28 @@ public class ConfiguracaoAgendaResource {
 	}
 	
 	@PostMapping("/update")
-	public ConfiguracaoAgenda atualizar(@RequestBody ConfiguracaoAgenda configuracaoAgenda) {
-		return this.configuracaoAgendaService.atualizarConfiguracaoAgenda(configuracaoAgenda);
+	public ConfiguracaoAgenda atualizar(@RequestBody ConfiguracaoAgenda configuracaoAgenda) throws Exception {
+		System.out.println("\nDia da semana: " + configuracaoAgenda.getDia() + "\n");
+		horaI = configuracaoAgenda.getHoraInicio();
+		horaT = configuracaoAgenda.getHoraTermino();
+		horaIint = configuracaoAgenda.getHoraInicio().getHour();
+		horaTint = configuracaoAgenda.getHoraTermino().getHour();
+		if(horaIint > horaTint) {
+			mensagem = "ERRO: Horário de ínicio não pode superar o horário de encerramento do espediente.";
+			throw new Exception(mensagem);
+		}else if( horaI == horaT) {
+			mensagem = "ERRO: Deve haver pelo menos uma hora de diferença entre o início e encerramento do expediente.";
+			throw new Exception(mensagem);
+		}else if(horaIint < horaTint){
+			try {
+				return this.configuracaoAgendaService.atualizarConfiguracaoAgenda(configuracaoAgenda);
+			}catch(Exception e) {
+				throw new Exception(e);
+			}
+		}else{
+			mensagem = "ERRO: Não foi possível finalizar o registro, causa desconhecida.";
+			throw new Exception(mensagem);
+		}
 	}
 	
 	@GetMapping("/remove")

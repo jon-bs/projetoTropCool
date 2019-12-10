@@ -19,48 +19,20 @@
           <div fxLayout="column">
             <div fxLayout="row" fxFlex=50>
               <!--  horaInicio -->
-
-              <!-- -->
+              
               <div class="ngx-timepicker-field-example">
+              
                 <ngx-timepicker-field id="horainicio" formControlName="horaInicio" [format]="24" [defaultTime]="'00:00'" ></ngx-timepicker-field>
               </div>
-
-             <!--
-              <mat-form-field fxFlex [floatLabel]="'always'">
-                <mat-label>Horario Termino</mat-label>
-                <input matInput id="horainicio" formControlName="horaInicio" placeholder="Horario Inicio" layout-align="center end" required>
-                <mat-error *ngIf="configuracaoForm.get('horaInicio').hasError('maxLength')">
-                  Máximo 11 caracteres.
-                </mat-error>
-                <mat-error *ngIf="configuracaoForm.get('horaInicio').hasError('required')">
-                  *Campo Obrigatório.
-                </mat-error>
-              </mat-form-field>
-              -->
             </div>
-            <br>
+          
             <div fxLayout="row" fxFlex=50>
-
               <!--HorarioTermino-->
-              <!---->
                 <div class="ngx-timepicker-field-example">
                   <ngx-timepicker-field id="horaTermino" formControlName="horaTermino" [format]="24" [defaultTime]="'00:00'"></ngx-timepicker-field>
                 </div>
-
-              <!--
-              <mat-form-field fxFlex [floatLabel]="'always'">
-                <mat-label>Horario Termino</mat-label>
-                <input matInput id="horaTermino" formControlName="horaTermino" placeholder="HorarioTermino" layout-align="center end" required>
-                <mat-error *ngIf="configuracaoForm.get('horaTermino').hasError('maxLength')">
-                  Máximo 11 caracteres.
-                </mat-error>
-                <mat-error *ngIf="configuracaoForm.get('horaTermino').hasError('required')">
-                  *Campo Obrigatório.
-                </mat-error>
-              </mat-form-field>
-              -->
             </div>
-
+            <br>
             <div fxLayout="row" fxFlex=50>
 
               <!--DiaSemana-->

@@ -10,6 +10,6 @@ export class ConfiguracaoAgenda {
         public horaTermino: Time,
         public tatuador: Tatuador,
         public horariosAgendados: HorarioAgendado[],
-        public diaSemana: DiaSemana
+        public dia: DiaSemana
     ){}
 }
