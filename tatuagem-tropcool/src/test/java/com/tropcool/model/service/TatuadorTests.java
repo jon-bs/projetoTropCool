@@ -5,6 +5,8 @@ import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.ValidationException;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,7 +76,7 @@ public class TatuadorTests extends AbstractIntegrationTests {
 	
 	/** CADASTRAR TATUADOR - ALVARA DUPLICADO - MUST FAIL **/
 	
-	@Test
+	@Test(expected = ValidationException.class)
 	@Sql({ 
 		"/dataset/truncate.sql",
 			"/dataset/usuarios.sql"
@@ -107,6 +109,7 @@ public class TatuadorTests extends AbstractIntegrationTests {
 	public void cadastrarTatuadorMustPasslEndereco() {
 		
 		Tatuador tatuador = new Tatuador();
+		Endereco end = new Endereco();
 		tatuador.setLogin("tatooadm");
 		tatuador.setSenha("12345");
 		tatuador.setNome("Gabriel Andrade");
@@ -117,6 +120,16 @@ public class TatuadorTests extends AbstractIntegrationTests {
 		tatuador.setTelefone1("14523658745");
 		tatuador.setTelefone2("14523658746");
 		tatuador.setAlvara("1111111111");
+		end.setCep("452632145");
+		end.setCidade("Belfaest");
+		end.setRua("dos bobos");
+		end.setEstado("Molondo");
+		end.setNumero("9586");
+		
+		this.enderecoService.cadastrarEndereco(end);
+		
+		tatuador.setEndereco(end);
+		
 		
 		this.tatuadorService.cadastrarTatuador(tatuador);
 		Assert.assertNotNull(tatuador.getId());
@@ -137,6 +150,16 @@ public class TatuadorTests extends AbstractIntegrationTests {
 		})
 	public void atualizarTatuadorMustPass() {
 		Tatuador tatuador = this.tatuadorRepository.findById(1001L).orElse(null);
+		Endereco end = new Endereco();
+		end.setCep("452632145");
+		end.setCidade("Belfaest");
+		end.setRua("dos bobos");
+		end.setEstado("Molondo");
+		end.setNumero("9586");
+		
+		this.enderecoService.cadastrarEndereco(end);
+		tatuador.setEndereco(end);
+		
 		tatuador.setLogin("tatoooMaster");
 		tatuador.setAlvara("1231231234");
 

@@ -311,9 +311,9 @@ public class ClienteTests extends AbstractIntegrationTests  {
 		clienteService.atualizarCliente(cliente);
 	}
 	
-	/*  ATUALIZAR CLIENTE - MUDAR SENHA SEM TOKEN - MUSTFAIL  */
+	/*  ATUALIZAR CLIENTE - MUDAR SENHA */
 	
-	@Test(expected = DataIntegrityViolationException.class)
+	@Test
 	@Sql({ 
 		"/dataset/truncate.sql",  
 		"/dataset/usuarios.sql",
@@ -338,8 +338,8 @@ public class ClienteTests extends AbstractIntegrationTests  {
 										})
 	public void removerClienteMustPass() {
 		
-		this.clienteService.removerCliente(1001L);
-		Cliente cliente = this.clienteService.detalharCliente(1001L);
+		Cliente cliente = this.clienteRepository.findById(1001L).orElse(null);
+		this.clienteService.removerCliente(cliente.getId());
 	}
 	
 }

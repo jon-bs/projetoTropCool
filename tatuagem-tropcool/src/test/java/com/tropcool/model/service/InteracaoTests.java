@@ -35,8 +35,7 @@ public class InteracaoTests extends AbstractIntegrationTests {
 	private MensagemRepository mensagemRepository;
 
 	/**
-	 * ====================================== CADASTRAR
-	 * ===========================================
+	 * ====================================== CADASTRAR ===========================================
 	 */
 
 	/* CADASTRAR INTERACAO - MUSTPASS */
