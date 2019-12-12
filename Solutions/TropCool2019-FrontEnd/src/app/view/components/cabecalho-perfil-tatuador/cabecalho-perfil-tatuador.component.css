@@ -1,0 +1,156 @@
+#content{
+    position: relative;
+    width: 90%;
+    height: 35%;
+    margin-top: 1%;
+    margin-left: 5%;
+}
+
+#div_fotoPerfil{
+    position: relative;
+    float: left;
+    margin-left: 1%;
+    height: 100%;
+    width: 22%;
+    background-image: url("../../../../assets/images/circle.png");
+    background-position: center;
+    background-repeat: no-repeat; 
+    background-size: 100% 100%;
+}
+
+#foto{
+    position: relative;
+    float: left;
+    margin-left: 13%;
+    margin-top: 14%;
+    border: 2px solid red;
+    background-color: white;
+    height: 72%;
+    width: 75%;
+    border-radius: 90px;
+    overflow: hidden;
+}
+
+#options_box{
+    position: relative;
+    float: left;
+    margin-top: 2%;
+    margin-left: 3%;
+    width: 73%;
+    height: 70%;
+}
+
+#upper{
+    position: relative;
+    margin-top: 3%;
+    width: 100%;
+    height: 40%;
+}
+
+#nome_tatuador{
+    position: relative;
+    float: left;
+    height: 70%;
+    width: 49%;
+    margin-top: 0.9%;
+    border: 1px solid blue;
+}
+
+#icons_div{
+    position: relative;
+    float: left;
+    height: 70%;
+    width: 49%;
+    margin-top: 0.9%;
+    margin-left: 0.9%;
+}
+
+.div_icon{
+    position: relative;
+    float: left;
+    margin-left: 1%;
+    margin-top: 0.3%;
+    height: 90%;
+    width: 14%;
+}
+
+#div_messageIcon{
+    overflow: hidden;
+    background-image: url("../../../../assets/images/icons/message_icon.png");
+    background-size: 100% 100%;
+    background-position: center;
+}
+
+#div_calendarIcon{
+    overflow: hidden;
+    background-image: url("../../../../assets/images/icons/calendar_icon3.png");
+    background-size: 100% 100%;
+    background-position: center;
+}
+
+
+.div_SmallIcon{
+    position: relative;
+    float: left;
+    width: 8%;
+    height: 60%;
+    margin-top: 2%;
+    margin-left: 2%;
+    
+}
+
+#facebook{    
+     margin-left: 20%;    
+}
+
+.button_link{
+    height: 100%;
+    width: 100%;
+    background-color: rgb(245, 245, 245);
+    background-position: center;
+    background-repeat: no-repeat;
+    border-color: lightgray;
+    border-radius: 8px;
+}
+
+#button_facebook{
+    background-image: url("../../../../assets/images/icons/facebook_icon2.png");   
+    background-size: 50% 100%; 
+}
+
+#button_instagram{
+    background-image: url("../../../../assets/images/icons/instagram_icon.png");
+    background-size: 100% 100%; 
+}
+
+#button_twitter{
+    background-image:url("../../../../assets/images/icons/twiiter_icon.png");
+    background-size: 100% 100%; 
+}
+
+#button_whatsApp{
+    background-image: url("../../../../assets/images/icons/whatsApp_icon.png");
+    background-size: 100% 100%; 
+}
+
+#less{
+    position: relative;
+    margin-top: 0.2%;
+    width: 100%;
+    height: 20%;
+}
+
+.menu_button{
+    height: 100%;
+    width: 20%;
+    font-family: comic;
+    font-style: italic;
+    font-size: 14px;
+}
+
+#button_sendMessage {       }
+
+#button_schedule    {       }
+
+#button_pubs        {       }
+

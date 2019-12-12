@@ -1,0 +1,17 @@
+<mat-card class="background-color" fxFlex>
+        <mat-list *ngFor="let conf of configuracoes" role="list" >
+                <mat-list-item
+                class="item-list" role="listitem" fxFlex>
+                        <div fxFlex (click)="selecionar(conf.id, 0)">
+                                <span fxFlex>{{conf.tatuador.nome}}</span>
+                                <span fxFlex>{{conf.horaInicio}} - {{conf.horaTermino}}</span>
+                                <span fxFlex>{{conf.dia}}</span>
+                                <!--<span fxFlex>{{conf.horaInicio}}-{{conf.horaTermino}}</span>-->
+                        </div>
+                        <button class="button-option" (click)="selecionar(conf.id, 1)">
+                                <mat-icon>edit</mat-icon></button>
+                        <button class="button-option" (click)="selecionar(conf.id, 2)">
+                                <mat-icon>delete</mat-icon></button>
+                </mat-list-item>
+        </mat-list>
+</mat-card>
